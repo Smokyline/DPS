@@ -49,15 +49,15 @@ def readAlg():
 
 q_dir = '/Users/Ivan/Documents/workspace/result/altaiSayVII/e2xt/'
 
-eq_ist = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
-eq_inst = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5instA.csv').T
-eq_inst10 = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5instC2010.csv').T
+eq_ist = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
+eq_inst = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5instA.csv').T
+eq_inst10 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5instC2010.csv').T
 eqs = [eq_ist, eq_inst, eq_inst10]
 eq_labels = ['M5.5+ istor', 'M5.5+ inst', 'M5.5 2010+']
 
-dps_data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_DPS.csv').T
-dps1_clust = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_DPS_Bel.csv', ['DPSx', 'DPSy']).T
-dps2_clust = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_DPS_Dze.csv', ['DPSx', 'DPSy']).T
+dps_data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_DPS.csv').T
+dps1_clust = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_DPS_Bel.csv', ['DPSx', 'DPSy']).T
+dps2_clust = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_DPS_Dze.csv', ['DPSx', 'DPSy']).T
 
 baseM = [84, 101, 45, 53]
 ##cd = [36, 52, 37, 46] #kvzln

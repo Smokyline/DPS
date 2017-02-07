@@ -33,7 +33,7 @@ def read():
     visual_data(A_coord, B_coord, title=title, display_plot=True, direc=q_dir, eqs=eqs, baseM=baseM, labels=['M5.5+'])
 
 read_file = '/Users/Ivan/Documents/workspace/result/altaiSayIII/q=-2.0/coord_q=-2.0_final.csv'
-eq55 = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5.csv').T
+eq55 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5.csv').T
 eqs = [eq55]
 q_dir = '/Users/Ivan/Documents/workspace/result/altaiSayIII/'
 if not os.path.exists(q_dir):

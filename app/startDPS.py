@@ -33,7 +33,7 @@ class DPS():
 
 
 
-data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_all.csv', ['x', 'y']).T
+data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_all.csv', ['x', 'y']).T
 
 #SpData = data.copy()
 #data = toDesc(data)

@@ -2,8 +2,8 @@ from alghTools.tools import read_csv, visual_2d, visual_3d_data, toDesc
 import numpy as np
 import math
 
-data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kmch/kmch_dps.csv').T
-dataDep = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kmch/kmch_depth.csv', col=['d'])[0]
+data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_dps.csv').T
+dataDep = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_depth.csv', col=['d'])[0]
 print(max(dataDep))
 data = toDesc(data)
 #depth_zero_idx = np.where(dataDep == 0)[0]

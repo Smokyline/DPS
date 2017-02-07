@@ -68,8 +68,8 @@ def toDesc(data):
     return desc_data
 
 
-data = read_csv('//Users/Ivan/Documents/workspace/resourses/csv/geop/kvz/kvz_dps.csv').T
-#data = read_csv('//Users/Ivan/Documents/workspace/resourses/csv/samer.csv').T
+data = read_csv('//Users/Ivan/Documents/workspace/resources/csv/geop/kvz/kvz_dps.csv').T
+#data = read_csv('//Users/Ivan/Documents/workspace/resources/csv/samer.csv').T
 
 desc_data = toDesc(data)
 #create_2d_map(desc_data)

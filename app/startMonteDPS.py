@@ -75,9 +75,9 @@ def monteCarlo(dps, eq, polyCoord, dps_param, p, num_iter, direct=None):
     visual_dataPoly(data[A], None, eq_dots, xyPoly, 'real_eq'+title, direct)
 
 
-data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kvz/KAV_CRIM_M2_DPS.csv').T
-#eq_dots = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5.csv').T
-eq_dots = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kvz/KAV_CRIM_EQ4,5.csv').T
+data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_M2_DPS.csv').T
+#eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5.csv').T
+eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_EQ4,5.csv').T
 
 saveDir = '/Users/Ivan/Documents/workspace/result/monte/one/'
 if not os.path.exists(saveDir):

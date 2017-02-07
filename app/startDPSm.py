@@ -117,14 +117,14 @@ def runDPSm_qIteration(data, sph_data, bInp, directory, iterStop, Q, eqs, betaTy
                 break
 
 
-# data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kvz/kvz_dps3.csv').T
-# data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kmch/kmch_dps.csv').T
-data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_DPS.csv').T
-# dataDep = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kmch/kmch_depth.csv', col=['d'])[0]
+# data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/kvz_dps3.csv').T
+# data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_dps.csv').T
+data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_DPS.csv').T
+# dataDep = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_depth.csv', col=['d'])[0]
 
-#eq6 = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kmch/kmch_65_71.csv').T
-#eq7 = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kmch/kmch_75.csv').T
-eq55 = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
+#eq6 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_65_71.csv').T
+#eq7 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_75.csv').T
+eq55 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
 eqs = [eq55]
 #eqs = None
 

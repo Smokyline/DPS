@@ -60,7 +60,7 @@ def monteCarlo(ext, eq, poly_coord, field_coord, ext_param, num_iter, direct=Non
 
 def run_ext(coord, ext_param):
 
-    dir_dps = '/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/'
+    dir_dps = '/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/'
     A = read_csv(dir_dps + 'altaiSay_'+versions[0]+'.csv', ['DPSx', 'DPSy']).T
 
     omega, v, delta = ext_param
@@ -87,9 +87,9 @@ def run_MCext():
     exts = [read_csv(saveDir+'ext_'+versions[0]+'.csv', list('xy')).T, read_csv(saveDir+'ext_'+versions[1]+'.csv',list('xy')).T]
     print('ext finished')
 
-    eq_ist = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
-    eq_inst = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5instA.csv').T
-    eq_inst10 = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/altaiSay/altaiSay_5,5instC2010.csv').T
+    eq_ist = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
+    eq_inst = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5instA.csv').T
+    eq_inst10 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5instC2010.csv').T
     eq_dots = np.append(eq_ist, eq_inst, axis=0)
     eq_dots = np.append(eq_dots, eq_inst10, axis=0)
 
