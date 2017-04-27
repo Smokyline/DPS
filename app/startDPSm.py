@@ -31,7 +31,7 @@ def readAlg():
         read_dir = '/Users/Ivan/Documents/workspace/result/kmchf/q=' + str(q) + '/'
         A_coord = np.empty((0, 2))
         iter = 1
-        q_dir = '{}{}/'.format(directory, 'q=' + str(q) + '/')
+        q_dir = '{}{}/'.format(save_path, 'q=' + str(q) + '/')
         if not os.path.exists(q_dir):
             os.makedirs(q_dir)
         while True:
@@ -65,24 +65,25 @@ def readAlg():
                 break
 
 
-def runDPSm_qIteration(data, sph_data, bInp, directory, iterStop, Q, eqs, betaType):
+def runDPSm_qIteration(desc_data, sph_data, bInp, save_path, epochs, Q, sample_eq, betaType):
     for q in Q:
         q = round(q, 3)
         print('\nq=%f' % q)
-        dim_data = data
+        dim_data = desc_data
         twoDcoord = sph_data
 
-        idxX = np.arange(len(dim_data)).astype(int)
-        idx_Aclust = np.array([]).astype(int)
 
-        q_dir = '{}{}/'.format(directory, 'q=' + str(q) + '/')
+        q_dir = '{}{}/'.format(save_path, 'q=' + str(q) + '/')
         if not os.path.exists(q_dir):
             os.makedirs(q_dir)
+
         iter = 1
+        idxX = np.arange(len(dim_data)).astype(int)
+        idx_Aclust = np.array([]).astype(int)
         while True:
 
             if betaType == 'find':
-                beta, R = t_runner(dim_data[idxX], q, beta_array, iter, q_dir)
+                beta, R = t_runner(dim_data[idxX], q, beta_array)
             if betaType == 'read':
                 beta = set_var(q, iter)
             if betaType == 'inp':
@@ -97,7 +98,7 @@ def runDPSm_qIteration(data, sph_data, bInp, directory, iterStop, Q, eqs, betaTy
 
             title = 'q={}; it={}, r={}; b={}'.format(q, iter, round(dps_set[3], 4), beta)
 
-            visual_data(twoDcoord[idx_Aclust], Bit_coord, title, False, q_dir, eqs=eqs, labels=['M5.5+'])
+            visual_data(twoDcoord[idx_Aclust], Bit_coord, title, False, q_dir, eqs=sample_eq, labels=eq_labels)
 
             Adf = pd.DataFrame(Ait_coord, columns=['DPSx', 'DPSy'])
             Bdf = pd.DataFrame(Bit_coord, columns=['Bx', 'By'])
@@ -108,7 +109,7 @@ def runDPSm_qIteration(data, sph_data, bInp, directory, iterStop, Q, eqs, betaTy
             idxX = Bx
 
             iter += 1
-            if iter > iterStop or len(Bx) == 0:
+            if iter > epochs or len(Bx) == 0:
                 Adf = pd.DataFrame(twoDcoord[idx_Aclust], columns=['DPSx', 'DPSy'])
                 Bdf = pd.DataFrame(twoDcoord[idxX], columns=['Bx', 'By'])
                 df = pd.concat([Adf, Bdf], axis=1)
@@ -119,37 +120,43 @@ def runDPSm_qIteration(data, sph_data, bInp, directory, iterStop, Q, eqs, betaTy
 
 # data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/kvz_dps3.csv').T
 # data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_dps.csv').T
-data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_DPS.csv').T
+#data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_DPS.csv').T
+desc_data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/baikal/baikal_DPS_2,7.csv').T
 # dataDep = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_depth.csv', col=['d'])[0]
 
 #eq6 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_65_71.csv').T
 #eq7 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kmch/kmch_75.csv').T
-eq55 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
-eqs = [eq55]
+eq575 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/baikal/baikal_5,75instr.csv').T
+eq55 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/baikal/baikal_5,5instr.csv').T
+eq6 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/baikal/baikal_6instr.csv').T
+eqs = [eq55, eq575, eq6]
+eq_labels = ['M5.5+', 'M5.75+', 'M6+']
 #eqs = None
 
-sph_data = data.copy()
-data = toDesc(data)
+sph_data = desc_data.copy()
+desc_data = toDesc(desc_data)
 # data, sph_data = remove_zero_depth(data, dataDep)
 
 # directory = '/Users/Ivan/Documents/workspace/result/kmchfIIdepth/'
 # directory = '/Users/Ivan/Documents/workspace/result/kmchDepth>0oldB/'
-directory = '/Users/Ivan/Documents/workspace/result/altaiSayVII/'
-print(len(data), 'data size')
+save_path = '/Users/Ivan/Documents/workspace/result/baikal_it4_Mc2.7_eq5.75/'
+
+print(len(desc_data), 'data size')
 
 #Q = np.arange(-2.7, -1.7, 0.1)
 # Q = [-3.25, -2.75, -2.25]
-Q = [-2]
+Q = [-3]
 
-iterStop = 3
+iterStop = 6
 
 # beta_array = np.arange(-1, 1.1, 0.5)
-beta_array = [-1, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9,
-              1]
+beta_array = np.arange(-1, 1.1, 0.1).round(1)
+
+    #[-1, -0.9, -0.8, -0.7, -0.6, -0.5, -0.4, -0.3, -0.2, -0.1, 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1]
 
 time_start = int(round(time.time() * 1000))
 
-runDPSm_qIteration(data, sph_data, bInp=None, directory=directory, iterStop=iterStop, Q=Q, eqs=eqs, betaType='find')  # betaType: find, read, inp
+runDPSm_qIteration(desc_data, sph_data, bInp=None, save_path=save_path, epochs=iterStop, Q=Q, sample_eq=eqs, betaType='find')  # betaType: find, read, inp
 #readAlg()
 
 finishTime = int(round(time.time() * 1000)) - time_start

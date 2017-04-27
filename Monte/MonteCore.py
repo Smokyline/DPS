@@ -1,5 +1,4 @@
 import numpy as np
-import os
 
 def calc_eps_disc(A, B, N, p):
     """w ожидание попаданий B множества в p границе"""

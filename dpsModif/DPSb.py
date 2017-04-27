@@ -2,7 +2,7 @@ import matplotlib
 matplotlib.use('Qt4Agg')
 import matplotlib.pyplot as plt
 import numpy as np
-from dpsCore.DPSold import calc_a, calc_r, dps_clust, calc_p, searchAlphaIndex
+from dpsModif.DPSold import calc_a, calc_r, dps_clust, calc_p, searchAlphaIndex
 from alghTools.tools import read_csv
 from alghTools.drawData import visual_dps_iter
 from itertools import product

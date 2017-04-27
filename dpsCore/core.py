@@ -144,6 +144,6 @@ def dps_clust(data, beta, q, r=None):
 
     print('A:{}; B:{}'.format(len(dps_set[0]), len(dps_set[1])))
     print('dpsCore iteration:{}'.format(it))
-    finishTime = int(round(time.time() * 1000))-time_start
+    finishTime = int(round(time.time() * 1000))-time_start  # millsec
     print('%i ms | %s' % (finishTime, time.strftime("%H:%M:%S", time.gmtime(int(finishTime/1000)))))
     return dps_set

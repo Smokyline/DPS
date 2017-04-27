@@ -3,23 +3,24 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import os
 
 
 
 
-def calcW_pix_ext(ext_data, eq_data, coord_field, pols):
+def calcW_pix_ext(ext_data, eq_data, xy_Poly):
     fig = plt.figure()
-    #ax = fig.add_subplot(111, aspect='equal')
-
     figManager = plt.get_current_fig_manager()
     figManager.window.showMaximized()
     ax = plt.gca()
-
     plt.axis('off')
 
-    plt.xlim(coord_field[0], coord_field[1])
-    plt.ylim(coord_field[2], coord_field[3])
-    center_x, center_y = np.mean(coord_field[:2]), np.mean(coord_field[2:])
+
+    xmin, xmax = np.min(xy_Poly[:, 0]), np.max(xy_Poly[:, 0])
+    ymin, ymax = np.min(xy_Poly[:, 1]), np.max(xy_Poly[:, 1])
+    plt.xlim(xmin, xmax)
+    plt.ylim(ymin, ymax)
+    center_x, center_y = np.mean(xy_Poly[:, 0]), np.mean(xy_Poly[:, 1])
 
     def calc_len_pix():
         fig.canvas.draw()
@@ -67,3 +68,17 @@ def calcW_pix_ext(ext_data, eq_data, coord_field, pols):
 
 
 
+def save_points_to_txt(points, path, itr):
+    save_path = path + 'random_eqs/'
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
+    for p in points:
+        f = open(save_path+'p_coord_it%i.txt' % (itr+1), 'a')
+        s = '%s %s' % (p[0], p[1])
+        f.write('%s\n' % s)
+        #f.close()
+
+def save_acc_to_txt(b, path):
+    f = open(path + 'omission.txt', 'a')
+    f.write('%s\n' % b)
+    f.close()

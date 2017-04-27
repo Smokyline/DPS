@@ -71,32 +71,33 @@ def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=N
         plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=160, linewidths=0.1, label='DPS clust', zorder=2)
 
     if eqs is not None:
-        col_array = ['k', 'b', '#d8d800', 'm']
+        col_array = ['b', '#d8d800', 'm']
         for col, eq in enumerate(eqs):
             #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
             for x, y, r in zip(eq[:, 0], eq[:, 1], [0.24 for i in range(len(eq))]):
                 if col == 0:
                     squareA = ax.add_artist(
                         RegularPolygon((x, y), 4, r, alpha=0.8, linewidth=2, zorder=4, facecolor='none',
-                                       edgecolor=col_array[col]))
+                                       edgecolor=col_array[col], label=labels[col]))
 
 
                 else:
                     circleA = ax.add_artist(Circle(xy=(x, y),
                                                    radius=r, alpha=0.8, linewidth=2, zorder=4, facecolor='none',
-                                                   edgecolor=col_array[col]))
+                                                   edgecolor=col_array[col], label=labels[col]))
 
-            if col == 0:
+            """if col == 0:
                 plt.scatter(eq[:, 0], eq[:, 1], c=col_array[col], marker='s', s=50, linewidths=0.3, label=labels[col],
                             zorder=4)
             else:
                 plt.scatter(eq[:, 0], eq[:, 1], c=col_array[col], marker='o', s=50, linewidths=0.5, label=labels[col],
                             zorder=4)
-
+"""
 
     plt.grid(True)
     plt.title(title)
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.19), ncol=4)
+    #plt.legend(loc=8, bbox_to_anchor=(0.5, -0.19), ncol=4) #altai
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.10), ncol=4)  # baikal
     if direc is None:
         plt.savefig('/Users/Ivan/Documents/workspace/result/' + title + '.png', dpi=500)
     else:

@@ -1,6 +1,6 @@
 from FCAZ.e2xt import *
 from Monte.createField import *
-from Monte.MonteEXT import calcW_pix_ext
+from Monte.MonteEXT import *
 from alghTools.drawData import visual_MontePlot
 import numpy as np
 import os
@@ -8,7 +8,7 @@ import os
 
 
 
-def run_EQiteration(extTrue, xyPoly, xyField, num_dots, iteration=100):
+def run_EQiteration(extTrue, xyPoly, num_dots, iteration=100, savedir=None):
     rand_eps_array = []
     A, B = 0, 0
     print('\niteration')
@@ -17,7 +17,12 @@ def run_EQiteration(extTrue, xyPoly, xyField, num_dots, iteration=100):
             print('%i of %i' % (i, iteration))
 
         rEQ_dots = inputPoly(xyPoly, num_dots=num_dots)
-        eps_random, Ai, Bi = calcW_pix_ext(extTrue, rEQ_dots, xyField, xyPoly)
+
+        #save_points_to_txt(rEQ_dots, savedir, i)
+
+        eps_random, Ai, Bi = calcW_pix_ext(extTrue, rEQ_dots, xyPoly)
+
+        save_acc_to_txt(Bi, savedir)
 
         A += Ai
         B += Bi
@@ -25,21 +30,21 @@ def run_EQiteration(extTrue, xyPoly, xyField, num_dots, iteration=100):
     return rand_eps_array, np.sum(rand_eps_array)/iteration, A/iteration, B/iteration
 
 
-def monteCarlo(ext, eq, poly_coord, field_coord, ext_param, num_iter, direct=None):
-    xyPoly = create_customPoly(poly_coord)
+def monteCarlo(ext, eq, poly_coord, num_iter, savedir=None):
+    xyPoly = np.array(poly_coord)
     real_ext = check_data_point_in_poly(xyPoly, ext)
     real_eq = check_data_point_in_poly(xyPoly, eq)
     print('\nMonteCarlo\next:%i eq%i' % (len(real_ext), len(real_eq)))
     A = range(len(real_ext))
 
     eq_r_count = len(real_eq)
-    eps_eqReal, Areal, Breal = calcW_pix_ext(real_ext, real_eq, field_coord, poly_coord)  # мат ожидание реальных точек
+    eps_eqReal, Areal, Breal = calcW_pix_ext(real_ext, real_eq, xyPoly)  # мат ожидание реальных точек
     strREAL = '\nreal eq ext eps:%f   real eq ext A:%i B:%i' % (100 - (eps_eqReal * 100), Areal, Breal)
     print(strREAL)
 
 
     # random eq
-    eps_eqRandArray ,eps_eqRand, Arand, Brand = run_EQiteration(extTrue=real_ext, xyPoly=poly_coord, xyField=field_coord, num_dots=eq_r_count, iteration=num_iter)  # мат ожидание случайных точек
+    eps_eqRandArray, eps_eqRand, Arand, Brand = run_EQiteration(extTrue=real_ext, xyPoly=xyPoly, num_dots=eq_r_count, iteration=num_iter, savedir=savedir)  # мат ожидание случайных точек
     strRANDeq = '\nrandom eq eps:%f  random eq A:%s B:%s' % (100 - (eps_eqRand * 100), round(Arand, 2), round(Brand, 2))
     print(strRANDeq)
 
@@ -75,7 +80,7 @@ def run_MCext():
     field_coord = [84, 101, 45, 53]  # altai
 
     #saveDir = '/Users/Ivan/Documents/workspace/result/monte/altai_e2xt/'
-    saveDir = '/Users/Ivan/Documents/workspace/result/altaiSayVII/e2xt/'
+    saveDir = '/Users/Ivan/Documents/workspace/result/altaiSay_control/e2xt/'
 
     if not os.path.exists(saveDir):
         os.makedirs(saveDir)
@@ -85,6 +90,7 @@ def run_MCext():
 
     #ext = run_ext(field_coord, ext_param)
     exts = [read_csv(saveDir+'ext_'+versions[0]+'.csv', list('xy')).T, read_csv(saveDir+'ext_'+versions[1]+'.csv',list('xy')).T]
+    exts = exts[0]
     print('ext finished')
 
     eq_ist = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
@@ -93,22 +99,15 @@ def run_MCext():
     eq_dots = np.append(eq_ist, eq_inst, axis=0)
     eq_dots = np.append(eq_dots, eq_inst10, axis=0)
 
-    num_it = 50
-    import pandas as pd
+    num_it = 500
     epsRe, epsRa = [], []
-    for i, ext in enumerate(exts):
+    #for i, ext in enumerate(exts):
+    for i, ext in enumerate([exts]):
         print(versions[i], end='\n')
-        eps_real, eps_rand, title, strREAL, strRANDeq = monteCarlo(ext, eq_dots, pols_coords, field_coord, ext_param, num_it, saveDir)
+        eps_real, eps_rand, title, strREAL, strRANDeq = monteCarlo(ext, eq_dots, pols_coords, num_it, saveDir)
         epsRe.append([eps_real for n in range(num_it)])
         epsRa.append(eps_rand)
 
-        #m = np.mean(eps_rand)
-        #sigma2 = np.sum([x**2 - m**2 for x in eps_rand])
-        #print(sigma2)
-        #print(np.sqrt(sigma2))
-
-
-        #Adf.to_csv(q_dir + 'ext_belov.csv', index=False, header=True, sep=';', decimal=',')
 
         text_file = open(saveDir + "monte_log" + versions[i] + ".txt", "w")
         text_file.write("%s\n%s\n%s" % (title, strREAL, strRANDeq))
@@ -118,6 +117,7 @@ def run_MCext():
 
     visual_MontePlot(epsRe, epsRa, title, versions, saveDir)
 
+#versions = ['belov', 'dze']
 versions = ['belov', 'dze']
 
 run_MCext()

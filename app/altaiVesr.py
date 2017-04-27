@@ -47,7 +47,7 @@ def readAlg():
 
 
 
-q_dir = '/Users/Ivan/Documents/workspace/result/altaiSayVII/e2xt/'
+q_dir = '/Users/Ivan/Documents/workspace/result/altaiSay_control/e2xt/'
 
 eq_ist = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
 eq_inst = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5instA.csv').T
