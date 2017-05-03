@@ -33,12 +33,13 @@ class DPS():
 
 
 
-data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_all.csv', ['x', 'y']).T
+data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/baikal/baikal_DPS_2,7.csv', ['x', 'y']).T
+#data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_M2_DPS.csv', ['x', 'y']).T
 
 #SpData = data.copy()
 #data = toDesc(data)
 
-dps = DPS(data, beta=-0.5, q=-2, r=0.29)
+dps = DPS(data, beta=0.0, q=-2, r=0.29)
 
 dps_set = dps.clustering()
 
@@ -46,5 +47,5 @@ A, B = dps_set[0], dps_set[1]
 
 #Ac, Bc = to2DSpher(SpData, A, B)
 
-#visual_data(data[A], data, display_plot=True, title='')
+visual_data(data[A], data, title='test', display_plot=False)
 

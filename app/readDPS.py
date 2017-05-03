@@ -30,7 +30,7 @@ def read():
             print('no_' + title, end=' ')
     A_coord, B_coord = np.asarray(DPSarray).T, np.asarray(Barray).T
     title = 'dps q=-2 b=[0.1,-0.1,-0.1] A=%s B=%s' % (len(A_coord), len(B_coord))
-    visual_data(A_coord, B_coord, title=title, display_plot=True, direc=q_dir, eqs=eqs, baseM=baseM, labels=['M5.5+'])
+    visual_data(A_coord, B_coord, title=title, display_plot=True, direc=q_dir, eqs=eqs, labels=['M5.5+'])
 
 read_file = '/Users/Ivan/Documents/workspace/result/altaiSayIII/q=-2.0/coord_q=-2.0_final.csv'
 eq55 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5.csv').T

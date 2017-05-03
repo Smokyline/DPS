@@ -13,95 +13,69 @@ import matplotlib.image as mpimg
 from scipy.misc import imread
 import matplotlib.cbook as cbook
 
+from itertools import cycle
+cycol = cycle('bgrcmk')
+
 import math
 from PIL import Image
 
 
-def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=None, baseM=False, labels=[''], diff_data=False, ext=False,
-                poly_field=False, real_ext_size=False):
-    #fig, ax = plt.subplots()
-    #fig = plt.figure()
+def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=None, labels=[''],  poly_field=False):
+
     plt.clf()
     figManager = plt.get_current_fig_manager()
     figManager.window.showMaximized()
     ax = plt.gca()
 
-    if baseM:
-        #xplt = np.arange(baseM[0], baseM[1] + 1, 2)
-        #yplt = np.arange(baseM[2], baseM[3] + 1, 1)
-        m_r = baseM
-        m = Basemap(llcrnrlat=m_r[2], urcrnrlat=m_r[3],
-                    llcrnrlon=m_r[0], urcrnrlon=m_r[1],
-                    resolution='l')
-        m.drawcountries(zorder=1, linewidth=1)
-        #m.drawcoastlines(zorder=1, linewidth=0.25)
-        parallels = np.arange(0., 90, 1)
-        m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
-        meridians = np.arange(0., 360, 1)
-        m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
-    else:
-        xplt = np.arange(min(dataX[:, 0]), max(dataX[:, 0]) + 1, 2)
-        yplt = np.arange(min(dataX[:, 1]), max(dataX[:, 1]) + 1, 1)
+    m = Basemap(llcrnrlat=min(dataX[:, 1]), urcrnrlat=max(dataX[:, 1]),
+                llcrnrlon=min(dataX[:, 0]), urcrnrlon=max(dataX[:, 0]),
+                resolution='l')
+    m.drawcountries(zorder=1, linewidth=1)
+    parallels = np.arange(0., 90, 2)
+    m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
+    meridians = np.arange(0., 360, 2)
+    m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
 
-    #plt.xticks(xplt, [str(x) + u'\N{DEGREE SIGN}' for x in xplt])
-    #plt.yticks(yplt, [str(y) + u'\N{DEGREE SIGN}' for y in yplt])
 
     if poly_field is not False:
         ax.add_patch(patches.Polygon(poly_field, edgecolor='b', facecolor='none', alpha=0.9, lw=1.5, zorder=1))
 
-    plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=40, linewidths=0, alpha=0.6, label='AltaiSayan M2.8+', zorder=1)
-
-    if ext is not False:
-        # #64ffff cyan
-        if real_ext_size:
-            delta = (np.sqrt(2)*0.05/2)
-            for xy in ext:
-
-                ax.add_artist(RegularPolygon(xy=(xy[0], xy[1]), numVertices=4, radius=delta, orientation=math.pi/4, lw=0,
-                                             color='r', label='e2xt'))
-        else:
-            plt.scatter(ext[:, 0], ext[:, 1], c='r', marker='s', s=120, linewidths=0.0, alpha=1, label='e2xt')
-        #
-
-    if diff_data is not False:
-        plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=160, linewidths=0.1, label='DPS unique', zorder=2)
-        plt.scatter(diff_data[0][:, 0], diff_data[0][:, 1], c='c', marker='.', s=160, linewidths=0.1, label='DPS 1', zorder=3)
-        plt.scatter(diff_data[1][:, 0], diff_data[1][:, 1], c='m', marker='.', s=160, linewidths=0.1, label='DPS 2', zorder=3)
-    else:
-        plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=160, linewidths=0.1, label='DPS clust', zorder=2)
+    plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=40, linewidths=0, alpha=0.6, label='Baikal M2.7+', zorder=1)
+    # TODO изменение лейбла каталога
+    plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=160, linewidths=0.1, label='DPS clust', zorder=2)
 
     if eqs is not None:
-        col_array = ['b', '#d8d800', 'm']
+        clr = [next(cycol) for i in range(len(eqs))]
         for col, eq in enumerate(eqs):
             #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
-            for x, y, r in zip(eq[:, 0], eq[:, 1], [0.24 for i in range(len(eq))]):
-                if col == 0:
+            for x, y, r in zip(eq[:, 0], eq[:, 1], [0.17 for i in range(len(eq))]):
+                if col >= len(eqs)/2:
                     squareA = ax.add_artist(
-                        RegularPolygon((x, y), 4, r, alpha=0.8, linewidth=2, zorder=4, facecolor='none',
-                                       edgecolor=col_array[col], label=labels[col]))
+                        RegularPolygon((x, y), 4, r, alpha=0.7, linewidth=2, zorder=4, facecolor='none',
+                                       edgecolor=clr[col], label=labels[col]))
 
 
                 else:
                     circleA = ax.add_artist(Circle(xy=(x, y),
-                                                   radius=r, alpha=0.8, linewidth=2, zorder=4, facecolor='none',
-                                                   edgecolor=col_array[col], label=labels[col]))
+                                                   radius=r, alpha=0.7, linewidth=2, zorder=4,
+                                                   edgecolor=clr[col], label=labels[col]))
 
-            """if col == 0:
-                plt.scatter(eq[:, 0], eq[:, 1], c=col_array[col], marker='s', s=50, linewidths=0.3, label=labels[col],
+            if col >= len(eqs) / 2:
+                plt.scatter([], [], c=clr[col], marker='s', s=50, linewidths=0.3, label=labels[col],
                             zorder=4)
             else:
-                plt.scatter(eq[:, 0], eq[:, 1], c=col_array[col], marker='o', s=50, linewidths=0.5, label=labels[col],
+                plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=labels[col],
                             zorder=4)
-"""
+
 
     plt.grid(True)
     plt.title(title)
     #plt.legend(loc=8, bbox_to_anchor=(0.5, -0.19), ncol=4) #altai
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.10), ncol=4)  # baikal
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.27), ncol=4)  # baikal
     if direc is None:
-        plt.savefig('/Users/Ivan/Documents/workspace/result/' + title + '.png', dpi=500)
+        plt.savefig('/Users/Ivan/Documents/workspace/result/' + title + '.png', dpi=400)
     else:
-        plt.savefig(direc + title + '.png', dpi=500)
+        plt.savefig(direc + title + '.png', bbox_inches='tight', pad_inches=0, dpi=400)
 
     if display_plot == True:
         plt.show()
@@ -129,21 +103,53 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
     plt.close(fig)
 
 
-def visual_ext(X, A_DPS, Z, title, path=None):
-    fig, ax = plt.subplots()
-    plt.gca().set_aspect('equal')
+def visual_ext(A_DPS, EXT, eqs, eqs_labels, title, path=None):
+    #fig, ax = plt.subplots()
+    #plt.gca().set_aspect('equal')
 
-    try:
-        plt.scatter(X[:, 0], X[:, 1], c='k', marker='.', s=10, linewidths=0, label='X')
-    except:
-        pass
+    plt.clf()
+    figManager = plt.get_current_fig_manager()
+    figManager.window.showMaximized()
+    ax = plt.gca()
 
-    plt.scatter(Z[:, 0], Z[:, 1], c='r', marker='s', s=14, linewidths=0.0, label='e2xt')
-    plt.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=15, linewidths=0.1, label='DPS')
+    m = Basemap(llcrnrlat=min(A_DPS[:, 1]), urcrnrlat=max(A_DPS[:, 1]),
+                llcrnrlon=min(A_DPS[:, 0]), urcrnrlon=max(A_DPS[:, 0]),
+                resolution='l')
+    m.drawcountries(zorder=1, linewidth=1)
+    # m.drawcoastlines(zorder=1, linewidth=0.25)
+    parallels = np.arange(0., 90, 2)
+    m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
+    meridians = np.arange(0., 360, 2)
+    m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
 
-    plt.legend()
+
+    ax.scatter(EXT[:, 0], EXT[:, 1], c='r', marker='s', s=110, linewidths=0.0, label='e2xt')
+    ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=90, linewidths=0.1, label='DPS')
+
+    if eqs is not None:
+        clr = [next(cycol) for i in range(len(eqs))]
+
+        for col, eq in enumerate(eqs):
+            for x, y, r in zip(eq[:, 0], eq[:, 1], [0.17 for i in range(len(eq))]):
+                if col >= len(eqs)/2:
+                    squareA = ax.add_artist(
+                        RegularPolygon((x, y), 4, r, alpha=0.7, linewidth=2, zorder=4, facecolor='none',
+                                       edgecolor=clr[col], label=eqs_labels[col]))
+                else:
+                    circleA = ax.add_artist(Circle(xy=(x, y),
+                                                   radius=r, alpha=0.7, linewidth=2, zorder=4,
+                                                   edgecolor=clr[col], label=eqs_labels[col]))
+            if col >= len(eqs)/2:
+                plt.scatter([], [], c=clr[col], marker='s', s=50, linewidths=0.3, label=eqs_labels[col],
+                            zorder=4)
+            else:
+                plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
+                            zorder=4)
+
     plt.grid(True)
     plt.title(title)
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.27), ncol=4)
+
 
     if path is None:
         plt.savefig('/Users/Ivan/Documents/workspace/result/'+title+'.png', dpi=500)

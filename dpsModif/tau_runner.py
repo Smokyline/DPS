@@ -41,52 +41,51 @@ def calc_tau_p(A, B, r, p_max):
 
 def t_runner(data, Q, beta_array):
     tau_array = []
+    b_and_q_comb = [(b, q) for b in beta_array for q in Q]
+    rads = [calc_r(data, q=q) for q in Q]
 
-    R = calc_r(data, q=Q)
+    for bq in b_and_q_comb:
+        beta = round(bq[0], 2)
+        q = round(bq[1], 2)
 
-    for b in beta_array:
-        print('/////////////////////')
-        beta = round(b, 2)
-        dps_set = dps_clust(data, beta=round(beta, 3), r=R, q=Q)
+        if len(Q) == 1:
+            r = rads[0]
+        else:
+            r = rads[np.ravel(np.where(Q == bq[1]))[0]]
+
+        print('/////////////////////\nbeta:%s q:%s r:%s' % (beta, q, r))
+
+        dps_set = dps_clust(data, beta=beta,  q=q, r=r)
         idxA, idxB, p_max = dps_set[0], dps_set[1], dps_set[6]
 
         if (len(idxA) == 0) or (len(idxB) == 0):
             tau = 0
         else:
-            pA, pB = calc_tau_p(data[idxA], data[idxB], R, p_max)
+            pA, pB = calc_tau_p(data[idxA], data[idxB], r, p_max)
             a_m = p_mean(pA, -2)
             b_m = p_mean(pB, 2)
             tau = a_m - b_m
-        print('tau:{}'.format(round(tau, 7)))
+        print('tau:%f' % tau)
         tau_array.append(tau)
 
     ans = []
     tau_array = np.asarray(tau_array)
     for i, t in enumerate(tau_array):
         if t == 0:
-            ans.append([beta_array[i], 0, t])
+            ans.append([b_and_q_comb[i], 0, t])
         else:
             y = tau_c(tau_array[np.where(tau_array > 0)], t)
-            ans.append([beta_array[i], y, t])
+            ans.append([b_and_q_comb[i], y, t])
     ans = np.array(ans)
 
     print('\n------------------')
     for y in ans:
-        print('beta:{}; y:{}; tau:{}'.format(
-            round(y[0], 3),
-            round(y[1], 4),
-            round(y[2], 4)))
+        print(y)
 
-    abs_array = np.asarray(abs(ans[:, 1] - 0.2))
-    abs_array = abs_array.reshape(len(abs_array), 1)
-    b_array = np.asarray(ans[:, 0]).reshape(len(ans[:, 0]), 1)
-    close_2sample = np.append(b_array, abs_array, axis=1)
-    close_2sample = close_2sample[np.where(ans[:, 1] != 0)]
-    arg_min = np.argmin(close_2sample[:, 1])
+    close_idx = np.argmin(abs(ans[:, 1] - 0.2))
+    best_beta, best_q = b_and_q_comb[close_idx]
 
-    best_beta = round(close_2sample[arg_min, 0], 3)
-    print('\nbest beta:{}'.format(round(best_beta, 3)))
-    #title = 'tau q={}; it={}, r={}; b={}'.format(round(Q, 3), iteration, round(R, 5), round(best_beta, 3))
+    print('\nbest beta:%s q:%s' % (best_beta, best_q))
 
-    return best_beta, R
+    return round(best_beta, 2), round(best_q, 2)
 

@@ -94,14 +94,14 @@ Bdf.to_csv(q_dir+'ext_dze.csv', index=False, header=True, sep=';', decimal=',')
 
 title = 'e2xt o=%s v=%s (%s%s) & dps q=-2 b=[0.1,-0.1,-0.1]' % (omega, v, check_pix_ext(extA, baseM, pols_coords), '%')
 print(title)
-visual_data(clusterA=dps1_clust, dataX=dps_data, title=title, display_plot=False, direc=q_dir,
-            eqs=eqs, baseM=baseM, labels=eq_labels, ext=extA, poly_field=pols_coords, diff_data=[AwD_dps, DwA_dps])
+visual_data(clusterA=dps1_clust, dataX=dps_data, title=title, display_plot=False, direc=q_dir, eqs=eqs,
+            labels=eq_labels, diff_data=[AwD_dps, DwA_dps], ext=extA, poly_field=pols_coords)
 
 
 title_diff = '2e2xt_1 o=-4.25 v=-2 vs e2xt_2 o=-4 v=-2.25'
 print('разность ext:%s%s' % (check_pix_ext(diffAD_ext, baseM, pols_coords, real_size=True), '%'))
 visual_data(clusterA=np.empty((0, 2)), dataX=np.empty((0, 2)), title=title_diff, display_plot=False, direc=q_dir,
-            eqs=eqs, baseM=baseM, labels=eq_labels, ext=diffAD_ext, poly_field=pols_coords, real_ext_size=True)
+            eqs=eqs, labels=eq_labels, ext=diffAD_ext, poly_field=pols_coords, real_ext_size=True)
 
 #ex_title = 'e2xt omega=%s v=%s delta=%s' % (omega, v, delta)
 #visual_ext(B, A, extA, ex_title, q_dir)

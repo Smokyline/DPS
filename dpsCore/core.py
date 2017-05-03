@@ -4,6 +4,12 @@ import time
 import math
 
 
+def evk_foo(i, data):
+    evk_array = np.zeros((1, len(data)))
+    for n, d in enumerate(i):
+        evk_array += (d - data[:, n]) ** 2
+    evk_array = np.sqrt(evk_array[0])
+    return evk_array
 
 
 def calc_r(data, q):
@@ -11,17 +17,15 @@ def calc_r(data, q):
     count = 0
     eps = sys.float_info.epsilon
 
-    for i, j in enumerate(data):
-        evk_array = np.zeros((1, len(data[i + 1:])))
-        for n, d in enumerate(j):
-            evk_array += (d - data[i + 1:, n])**2
-        evk_array = np.sqrt(evk_array[0])
-        evk_array = evk_array[np.where(evk_array > eps)[0]]**q
-        Earray = np.sum(evk_array)
-        if Earray > eps:
+    for i, xy in enumerate(data):
+        evk_array = evk_foo(xy, data[i+1:])
+        evk_array = np.power(evk_array[np.where(evk_array > eps)], q)
+        sum_evk = np.sum(evk_array)
+        if sum_evk > eps:
             count += len(evk_array)
-            evk += Earray
+            evk += sum_evk
     r = (evk / count) ** (1 / q)
+
     print('r:%f' % r)
     return r
 

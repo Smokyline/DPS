@@ -1,7 +1,8 @@
-from alghTools.tools import read_csv
 from alghTools.drawData import visual_ext
+from alghTools.importData import ImportData
 from dpsCore.core import dps_clust
 import numpy as np
+import pandas as pd
 import math
 import sys
 
@@ -56,25 +57,31 @@ def ext_run(A, omega=-4, v=-3, delta=0.05, coord=None):
 
 
 def run():
-    # data = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kvz/kvz_dps3.csv').T
-    # dps_set = dps_clust(data=data, beta=-0.4, r=None, q=-3.0)
-    # A, r = data[dps_set[0]], dps_set[3]
-    directory = '/Users/Ivan/Documents/workspace/result/altaiSayIV/'
-    q_dir = directory + 'q=-2/'
-    A = read_csv(q_dir + 'coord_q=-2_final.csv', ['DPSx', 'DPSy']).T
-    data = np.array([])
 
+    imp = ImportData(zone='baikal', main_mag='2,7', mag_array=['5,5', '5,75', '6'])
+    DPS_A = imp.read_dps_res(zone='baikal', mod='baikal_it6_Mc2.8', q='-2.5')
+    dps_dir = imp.DPS_dir
+    eqs, eqs_labels = imp.get_eq_stack()
+
+    """param"""
     omega = -4
     v = -3
     delta = 0.05
     # coord = [40, 52, 37, 45] #kvz
     # coord = [84, 102, 45, 56] #altai
-    coord = [75, 105, 45, 55]  # altai
+    #coord = [75, 105, 45, 55]  # altai
+    coord = [96, 123, 47, 59]  # baikal
 
     Z = createGrid(delta, coord)
     print('len grid', len(Z))
 
-    ZA = D_pa(A, Z, omega, v)
+    EXT = D_pa(DPS_A, Z, omega, v)
 
-    title = 'extIV delta=%s omega=%s v=%s' % (delta, omega, v)
-    visual_ext(data, A, ZA, title)
+    title = 'ext delta=%s omega=%s v=%s' % (delta, omega, v)
+    visual_ext(DPS_A, EXT, eqs, eqs_labels, title, path=dps_dir)
+
+    Adf = pd.DataFrame(EXT, columns=['x', 'y'])
+    Adf.to_csv(dps_dir + 'ext2.csv', index=False, header=True,
+              sep=';', decimal=',')
+
+run()
