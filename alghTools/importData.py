@@ -9,11 +9,15 @@ class ImportData:
         res_dir = '/Users/Ivan/Documents/workspace/resources/csv/geop/%s/' % (zone)
 
 
-        self.data_dps = read_csv(res_dir + '%s_DPS_%s.csv' % (zone, main_mag), col=['x', 'y']).T
+        try:
+            self.data_dps = read_csv(res_dir + '%s_DPS_%s.csv' % (zone, main_mag), col=['x', 'y']).T
+        except:
+            print('dps import fail')
 
 
         self.mag_str = mag_array
         self.mag_type = ['instr']
+
 
         self.eqs = []
         eqs_istor = []

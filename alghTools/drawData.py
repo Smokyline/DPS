@@ -20,7 +20,7 @@ import math
 from PIL import Image
 
 
-def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=None, labels=[''],  poly_field=False):
+def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=None, labels=[''], origData_name='', poly_field=False):
 
     plt.clf()
     figManager = plt.get_current_fig_manager()
@@ -40,12 +40,11 @@ def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=N
     if poly_field is not False:
         ax.add_patch(patches.Polygon(poly_field, edgecolor='b', facecolor='none', alpha=0.9, lw=1.5, zorder=1))
 
-    plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=40, linewidths=0, alpha=0.6, label='Baikal M2.7+', zorder=1)
-    # TODO изменение лейбла каталога
+    plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=40, linewidths=0, alpha=0.6, label=origData_name, zorder=1)
     plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=160, linewidths=0.1, label='DPS clust', zorder=2)
 
     if eqs is not None:
-        clr = [next(cycol) for i in range(len(eqs))]
+        clr = ['c', 'k', 'g', 'm', 'y']
         for col, eq in enumerate(eqs):
             #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
             for x, y, r in zip(eq[:, 0], eq[:, 1], [0.17 for i in range(len(eq))]):
@@ -103,7 +102,7 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
     plt.close(fig)
 
 
-def visual_ext(A_DPS, EXT, eqs, eqs_labels, title, path=None):
+def visual_ext(X, A_DPS, EXT, eqs, eqs_labels, cd, title, path=None):
     #fig, ax = plt.subplots()
     #plt.gca().set_aspect('equal')
 
@@ -112,8 +111,8 @@ def visual_ext(A_DPS, EXT, eqs, eqs_labels, title, path=None):
     figManager.window.showMaximized()
     ax = plt.gca()
 
-    m = Basemap(llcrnrlat=min(A_DPS[:, 1]), urcrnrlat=max(A_DPS[:, 1]),
-                llcrnrlon=min(A_DPS[:, 0]), urcrnrlon=max(A_DPS[:, 0]),
+    m = Basemap(llcrnrlat=cd[2], urcrnrlat=cd[3],
+                llcrnrlon=cd[0], urcrnrlon=cd[1],
                 resolution='l')
     m.drawcountries(zorder=1, linewidth=1)
     # m.drawcoastlines(zorder=1, linewidth=0.25)
@@ -123,6 +122,7 @@ def visual_ext(A_DPS, EXT, eqs, eqs_labels, title, path=None):
     m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
 
 
+    ax.scatter(X[:, 0], X[:, 1], c='k', marker='s', s=70, linewidths=0.0, label='X')
     ax.scatter(EXT[:, 0], EXT[:, 1], c='r', marker='s', s=110, linewidths=0.0, label='e2xt')
     ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=90, linewidths=0.1, label='DPS')
 
@@ -148,7 +148,7 @@ def visual_ext(A_DPS, EXT, eqs, eqs_labels, title, path=None):
 
     plt.grid(True)
     plt.title(title)
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.27), ncol=4)
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.23), ncol=4)
 
 
     if path is None:
@@ -207,7 +207,6 @@ def check_pix_ext(A, cd, pols, real_size=False):
     figManager = plt.get_current_fig_manager()
     figManager.window.showMaximized()
     ax = plt.gca()
-
 
     plt.xlim(cd[0], cd[1])
     plt.ylim(cd[2], cd[3])

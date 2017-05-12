@@ -46,7 +46,7 @@ def runDPSm_qIteration(desc_data, sph_data, bInp, save_path, epochs, Q, sample_e
 
         title = 'it={}; q={}, r={}; b={}'.format(iter, q, round(dps_set[3], 4), beta)
 
-        visual_data(twoDcoord[idx_Aclust], Bit_coord, title, False, q_dir, eqs=sample_eq, labels=eq_labels)
+        visual_data(twoDcoord[idx_Aclust], Bit_coord, title, False, q_dir, eqs=sample_eq, labels=eq_labels, origData_name=region_name+mc_mag)
 
         Adf = pd.DataFrame(Ait_coord, columns=['DPSx', 'DPSy'])
         Bdf = pd.DataFrame(Bit_coord, columns=['Bx', 'By'])
@@ -67,8 +67,10 @@ def runDPSm_qIteration(desc_data, sph_data, bInp, save_path, epochs, Q, sample_e
 
 
 region_name = 'baikal'
+mc_mag = '2.7'
 
-imp = ImportData(region_name, main_mag='2,7', mag_array=['5,5', '5,75', '6'])
+#imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['5,5', '5,75', '6'])
+imp = ImportData(region_name, main_mag='q', mag_array=['5,75', '6'])
 
 desc_data = imp.data_dps
 eqs, eq_labels = imp.get_eq_stack()
@@ -76,27 +78,20 @@ eqs, eq_labels = imp.get_eq_stack()
 
 sph_data = desc_data.copy()
 desc_data = toDesc(desc_data)
-# data, sph_data = remove_zero_depth(data, dataDep)
 
-# directory = '/Users/Ivan/Documents/workspace/result/kmchfIIdepth/'
-# directory = '/Users/Ivan/Documents/workspace/result/kmchDepth>0oldB/'
-save_path = '/Users/Ivan/Documents/workspace/result/%s/%s_it6_Mc2.7/' % (region_name, region_name)
 
 print(len(desc_data), 'data size')
 
-Q = [-2.25]
-#Q = np.arange(-2.4, -3.1, -0.1)
+Q = [-2.0]
 #Q = np.arange(-2., -3.1, -0.1)
 
 epochs = 4
 
-# beta_array = np.arange(-1, 1.1, 0.5)
 beta_array = np.arange(-1, 1.1, 0.1).round(1)
+save_path = '/Users/Ivan/Documents/workspace/result/%s/%s_it%s_Mc%s/' % (region_name, region_name, epochs, mc_mag)
+
 
 time_start = int(round(time.time() * 1000))
 runDPSm_qIteration(desc_data, sph_data, bInp=None, save_path=save_path, epochs=epochs, Q=Q, sample_eq=eqs, betaType='find')  # betaType: find, read, inp
-#readAlg()
-
 finishTime = int(round(time.time() * 1000)) - time_start
 print(time.strftime("\n\ntotal time\n%H:%M:%S", time.gmtime(int(finishTime / 1000))))
-# выключить эпицентры на карте!!!

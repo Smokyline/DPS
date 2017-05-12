@@ -1,4 +1,4 @@
-from alghTools.drawData import visual_ext
+from alghTools.drawData import visual_ext, check_pix_ext
 from alghTools.importData import ImportData
 from dpsCore.core import dps_clust
 import numpy as np
@@ -59,7 +59,8 @@ def ext_run(A, omega=-4, v=-3, delta=0.05, coord=None):
 def run():
 
     imp = ImportData(zone='baikal', main_mag='2,7', mag_array=['5,5', '5,75', '6'])
-    DPS_A = imp.read_dps_res(zone='baikal', mod='baikal_it6_Mc2.8', q='-2.5')
+    DPS_A = imp.read_dps_res(zone='baikal', mod='baikal_it5_Mc2.7_bq', q='-2.9')
+    origin_data = imp.data_dps
     dps_dir = imp.DPS_dir
     eqs, eqs_labels = imp.get_eq_stack()
 
@@ -77,8 +78,11 @@ def run():
 
     EXT = D_pa(DPS_A, Z, omega, v)
 
-    title = 'ext delta=%s omega=%s v=%s' % (delta, omega, v)
-    visual_ext(DPS_A, EXT, eqs, eqs_labels, title, path=dps_dir)
+    pers = check_pix_ext(EXT, coord, pols=[[coord[0], coord[2]], [coord[0], coord[3]],
+                                           [coord[1], coord[3]], [coord[1], coord[2]]])
+
+    title = 'ext S=%s delta=%s omega=%s v=%s' % (pers, delta, omega, v)
+    visual_ext(origin_data, DPS_A, EXT, eqs, eqs_labels, coord, title, path=dps_dir)
 
     Adf = pd.DataFrame(EXT, columns=['x', 'y'])
     Adf.to_csv(dps_dir + 'ext2.csv', index=False, header=True,
