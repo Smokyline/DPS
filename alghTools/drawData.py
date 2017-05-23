@@ -16,9 +16,17 @@ import matplotlib.cbook as cbook
 from itertools import cycle
 cycol = cycle('bgrcmk')
 
-import math
-from PIL import Image
 
+import math
+#from PIL import Image
+
+
+def get_border_coord():
+    # coord = [40, 52, 37, 45] #kvz
+    # coord = [84, 102, 45, 56] #altai
+    # coord = [75, 105, 45, 55]  # altai
+
+    return [95, 125, 46, 61]
 
 def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=None, labels=[''], origData_name='', poly_field=False):
 
@@ -27,8 +35,10 @@ def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=N
     figManager.window.showMaximized()
     ax = plt.gca()
 
-    m = Basemap(llcrnrlat=min(dataX[:, 1]), urcrnrlat=max(dataX[:, 1]),
-                llcrnrlon=min(dataX[:, 0]), urcrnrlon=max(dataX[:, 0]),
+
+    cd = get_border_coord()
+    m = Basemap(llcrnrlat=cd[2], urcrnrlat=cd[3],
+                llcrnrlon=cd[0], urcrnrlon=cd[1],
                 resolution='l')
     m.drawcountries(zorder=1, linewidth=1)
     parallels = np.arange(0., 90, 2)
@@ -40,30 +50,26 @@ def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=N
     if poly_field is not False:
         ax.add_patch(patches.Polygon(poly_field, edgecolor='b', facecolor='none', alpha=0.9, lw=1.5, zorder=1))
 
-    plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=40, linewidths=0, alpha=0.6, label=origData_name, zorder=1)
-    plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=160, linewidths=0.1, label='DPS clust', zorder=2)
+    plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=35, linewidths=0, alpha=0.55, label=origData_name, zorder=1)
+    plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=150, linewidths=0.05, label='DPS clust', zorder=2)
 
     if eqs is not None:
-        clr = ['c', 'k', 'g', 'm', 'y']
+        clr = ['b', 'r', 'y', 'c', '#533126', 'm']
+        #clr = [next(cycol) for i in range(len(eqs))]
+
+        c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
+        #np.random.shuffle(c_rad)
+        #TODO цвета
+
         for col, eq in enumerate(eqs):
             #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
-            for x, y, r in zip(eq[:, 0], eq[:, 1], [0.17 for i in range(len(eq))]):
-                if col >= len(eqs)/2:
-                    squareA = ax.add_artist(
-                        RegularPolygon((x, y), 4, r, alpha=0.7, linewidth=2, zorder=4, facecolor='none',
-                                       edgecolor=clr[col], label=labels[col]))
+            for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
 
+                circleA = ax.add_artist(Circle(xy=(x, y),
+                                                   radius=r, alpha=0.9, linewidth=3.5, zorder=4,
+                                                   edgecolor=clr[col], facecolor='none', label=labels[col]))
 
-                else:
-                    circleA = ax.add_artist(Circle(xy=(x, y),
-                                                   radius=r, alpha=0.7, linewidth=2, zorder=4,
-                                                   edgecolor=clr[col], label=labels[col]))
-
-            if col >= len(eqs) / 2:
-                plt.scatter([], [], c=clr[col], marker='s', s=50, linewidths=0.3, label=labels[col],
-                            zorder=4)
-            else:
-                plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=labels[col],
+            plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=labels[col],
                             zorder=4)
 
 
@@ -103,52 +109,49 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
 
 
 def visual_ext(X, A_DPS, EXT, eqs, eqs_labels, cd, title, path=None):
-    #fig, ax = plt.subplots()
-    #plt.gca().set_aspect('equal')
-
     plt.clf()
     figManager = plt.get_current_fig_manager()
     figManager.window.showMaximized()
     ax = plt.gca()
 
+    cd = get_border_coord()
     m = Basemap(llcrnrlat=cd[2], urcrnrlat=cd[3],
                 llcrnrlon=cd[0], urcrnrlon=cd[1],
                 resolution='l')
     m.drawcountries(zorder=1, linewidth=1)
-    # m.drawcoastlines(zorder=1, linewidth=0.25)
     parallels = np.arange(0., 90, 2)
     m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
     meridians = np.arange(0., 360, 2)
     m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
 
 
-    ax.scatter(X[:, 0], X[:, 1], c='k', marker='s', s=70, linewidths=0.0, label='X')
-    ax.scatter(EXT[:, 0], EXT[:, 1], c='r', marker='s', s=110, linewidths=0.0, label='e2xt')
-    ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=90, linewidths=0.1, label='DPS')
+    ax.scatter(X[:, 0], X[:, 1], c='k', marker='.', s=45, linewidths=0.0, label='X')
+    ax.scatter(EXT[:, 0], EXT[:, 1], c='g', marker='s', s=110, linewidths=0.0, label='e2xt')
+    ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='#fd41cd', marker='.', s=75, linewidths=0.1, label='DPS')
 
     if eqs is not None:
-        clr = [next(cycol) for i in range(len(eqs))]
+        clr = ['b', 'r', 'y', 'c', '#533126', '#8bf806']
+        #clr = [next(cycol) for i in range(len(eqs))]
+
+        c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
+        #np.random.shuffle(c_rad)
+        #TODO цвета
 
         for col, eq in enumerate(eqs):
-            for x, y, r in zip(eq[:, 0], eq[:, 1], [0.17 for i in range(len(eq))]):
-                if col >= len(eqs)/2:
-                    squareA = ax.add_artist(
-                        RegularPolygon((x, y), 4, r, alpha=0.7, linewidth=2, zorder=4, facecolor='none',
-                                       edgecolor=clr[col], label=eqs_labels[col]))
-                else:
-                    circleA = ax.add_artist(Circle(xy=(x, y),
-                                                   radius=r, alpha=0.7, linewidth=2, zorder=4,
-                                                   edgecolor=clr[col], label=eqs_labels[col]))
-            if col >= len(eqs)/2:
-                plt.scatter([], [], c=clr[col], marker='s', s=50, linewidths=0.3, label=eqs_labels[col],
+            #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
+            for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
+
+                circleA = ax.add_artist(Circle(xy=(x, y),
+                                                   radius=r, alpha=0.9, linewidth=3.5, zorder=4,
+                                                   edgecolor=clr[col], facecolor='none', label=eqs_labels[col]))
+
+            plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
                             zorder=4)
-            else:
-                plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
-                            zorder=4)
+
 
     plt.grid(True)
     plt.title(title)
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.23), ncol=4)
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.21), ncol=4)
 
 
     if path is None:

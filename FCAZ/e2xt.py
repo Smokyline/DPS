@@ -1,19 +1,17 @@
-from alghTools.drawData import visual_ext, check_pix_ext
+from alghTools.drawData import visual_ext, check_pix_ext, get_border_coord
 from alghTools.importData import ImportData
 from dpsCore.core import dps_clust
 import numpy as np
 import pandas as pd
+from itertools import product
 import math
 import sys
 
 def createGrid(delta, coord):
-    xMin, xMax, yMin, yMax = coord
-    grid = np.empty((0, 2))
-    X = np.arange(xMin, xMax + delta, delta)
-    Y = np.arange(yMin, yMax + delta, delta)
-    for x in X:
-        for y in Y:
-            grid = np.append(grid, np.array([[x, y]]), axis=0)
+
+    x_min, x_max, y_min, y_max = coord
+    coordinates = list(product(np.arange(x_min, x_max, delta), np.arange(y_min, y_max, delta)))
+    grid = np.array(coordinates)
 
     return grid
 
@@ -30,7 +28,6 @@ def D_pa(A, Z, omega, v):
 
         if np.min(evk_array) <= eps:
             zero_array = np.append(zero_array, i)
-
 
         evk_array_woEPS = evk_array[np.where(evk_array > eps)]
         meanEvk = np.mean(evk_array_woEPS)
@@ -59,19 +56,17 @@ def ext_run(A, omega=-4, v=-3, delta=0.05, coord=None):
 def run():
 
     imp = ImportData(zone='baikal', main_mag='2,7', mag_array=['5,5', '5,75', '6'])
-    DPS_A = imp.read_dps_res(zone='baikal', mod='baikal_it5_Mc2.7_bq', q='-2.9')
+    DPS_A = imp.read_dps_res(zone='baikal', mod='baikal_it4_Mc2.7_III', q='-2.25')
     origin_data = imp.data_dps
     dps_dir = imp.DPS_dir
     eqs, eqs_labels = imp.get_eq_stack()
 
     """param"""
-    omega = -4
-    v = -3
+    omega = -5
+    v = -2.75
     delta = 0.05
-    # coord = [40, 52, 37, 45] #kvz
-    # coord = [84, 102, 45, 56] #altai
-    #coord = [75, 105, 45, 55]  # altai
-    coord = [96, 123, 47, 59]  # baikal
+
+    coord = get_border_coord()
 
     Z = createGrid(delta, coord)
     print('len grid', len(Z))

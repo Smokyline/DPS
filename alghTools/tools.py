@@ -21,7 +21,7 @@ def read_csv(path, col=['x', 'y']):
                 except:
                     print('Error in row:%s "%s"' % (j, c))
 
-        array.append(np.array(cell))
+        array.append(cell)
 
     return np.array(array)
 

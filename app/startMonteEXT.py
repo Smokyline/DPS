@@ -2,6 +2,7 @@ from FCAZ.e2xt import *
 from Monte.createField import *
 from Monte.MonteEXT import *
 from alghTools.drawData import visual_MontePlot
+from alghTools.tools import read_csv
 import numpy as np
 import os
 
@@ -44,7 +45,9 @@ def monteCarlo(ext, eq, poly_coord, num_iter, savedir=None):
 
 
     # random eq
-    eps_eqRandArray, eps_eqRand, Arand, Brand = run_EQiteration(extTrue=real_ext, xyPoly=xyPoly, num_dots=eq_r_count, iteration=num_iter, savedir=savedir)  # мат ожидание случайных точек
+    eps_eqRandArray, eps_eqRand, Arand, Brand = run_EQiteration(extTrue=real_ext, xyPoly=xyPoly,
+                                                                num_dots=eq_r_count, iteration=num_iter,
+                                                                savedir=savedir)  # мат ожидание случайных точек
     strRANDeq = '\nrandom eq eps:%f  random eq A:%s B:%s' % (100 - (eps_eqRand * 100), round(Arand, 2), round(Brand, 2))
     print(strRANDeq)
 
@@ -62,7 +65,7 @@ def monteCarlo(ext, eq, poly_coord, num_iter, savedir=None):
     #visual_dataPoly(real_ext[A], None, random_dots, xyPoly, 'random_eq'+title, direct)
     #visual_dataPoly(real_ext[A], None, real_eq, xyPoly, 'real_eq'+title, direct)
 
-
+"""
 def run_ext(coord, ext_param):
 
     dir_dps = '/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/'
@@ -72,7 +75,7 @@ def run_ext(coord, ext_param):
     Z = createGrid(delta, coord)
     ZA = D_pa(A, Z, omega, v)
     return ZA
-
+"""
 def run_MCext():
     pols_coords = [[84, 47], [84, 53], [101, 53], [101, 48.5], [91.5, 48.5], [91.5, 45.5], [89, 45.5], [89, 47]]
     # coord = [40, 52, 37, 45] #kvz
@@ -80,7 +83,6 @@ def run_MCext():
     field_coord = [84, 101, 45, 53]  # altai
 
     #saveDir = '/Users/Ivan/Documents/workspace/result/monte/altai_e2xt/'
-    saveDir = '/Users/Ivan/Documents/workspace/result/altaiSay_control/e2xt/'
 
     if not os.path.exists(saveDir):
         os.makedirs(saveDir)
@@ -89,8 +91,9 @@ def run_MCext():
     #ext_param = -4, -2.25, 0.05  # omega v delta dze
 
     #ext = run_ext(field_coord, ext_param)
-    exts = [read_csv(saveDir+'ext_'+versions[0]+'.csv', list('xy')).T, read_csv(saveDir+'ext_'+versions[1]+'.csv',list('xy')).T]
-    exts = exts[0]
+    exts = []
+    for i in range(len(versions)):
+        exts.append(read_csv(saveDir+'ext_'+versions[i]+'.csv', list('xy')).T)
     print('ext finished')
 
     eq_ist = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
@@ -102,7 +105,7 @@ def run_MCext():
     num_it = 500
     epsRe, epsRa = [], []
     #for i, ext in enumerate(exts):
-    for i, ext in enumerate([exts]):
+    for i, ext in enumerate(exts):
         print(versions[i], end='\n')
         eps_real, eps_rand, title, strREAL, strRANDeq = monteCarlo(ext, eq_dots, pols_coords, num_it, saveDir)
         epsRe.append([eps_real for n in range(num_it)])
@@ -115,9 +118,11 @@ def run_MCext():
 
 
 
-    visual_MontePlot(epsRe, epsRa, title, versions, saveDir)
+    #visual_MontePlot(epsRe, epsRa, title, versions, saveDir)
 
 #versions = ['belov', 'dze']
-versions = ['belov', 'dze']
+versions = ['dze']
+#versions = ['belov']
+saveDir = '/Users/Ivan/Documents/workspace/result/altaySay/altaiSay_control/e2xt/'
 
 run_MCext()

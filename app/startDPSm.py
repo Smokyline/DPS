@@ -70,11 +70,14 @@ region_name = 'baikal'
 mc_mag = '2.7'
 
 #imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['5,5', '5,75', '6'])
-imp = ImportData(region_name, main_mag='q', mag_array=['5,75', '6'])
+imp = ImportData(region_name, main_mag='q', mag_array=['5,5', '5,75', '6'])
 
-desc_data = imp.data_dps
+#desc_data = imp.data_dps
+
+desc_data = imp.read_dps_res('baikal', mod='baikal_it4_Mc2.7_II', q='-2.25')
 eqs, eq_labels = imp.get_eq_stack()
 
+#desc_data = desc_data[:1000]
 
 sph_data = desc_data.copy()
 desc_data = toDesc(desc_data)
@@ -82,7 +85,7 @@ desc_data = toDesc(desc_data)
 
 print(len(desc_data), 'data size')
 
-Q = [-2.0]
+Q = [-2.25]
 #Q = np.arange(-2., -3.1, -0.1)
 
 epochs = 4
