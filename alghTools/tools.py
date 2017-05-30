@@ -41,6 +41,35 @@ def remove_zero_depth(data, dataDep):
     sph_data = np.delete(sph_data, depth_zero_idx, 0)
     return data, sph_data
 
+
+def toDesc2(sph_x, sph_y):
+    r = 6371
+    desc_data = np.empty((0, 3))
+    for i in range(len(sph_x)):
+        # az, el = sph_x[i] * math.pi / 180, sph_y[i] * math.pi / 180
+        az, el = math.radians(sph_x[i]), math.radians(sph_y[i])
+        rcos_theta = r * np.cos(el)
+        x = rcos_theta * np.cos(az)
+        y = rcos_theta * np.sin(az)
+        z = r * np.sin(el)
+        xyz = np.array([x, y, z]).reshape((1, 3))
+        desc_data = np.append(desc_data, xyz, axis=0)
+    return desc_data
+
+def toSpher2(data):
+    spher_data = np.empty((0, 2))
+    for i in data:
+        x, y, z = i[0], i[1], i[2]
+        hxy = np.hypot(x, y)
+        r = np.hypot(hxy, z)
+        # r = 6377
+
+        el = np.arctan2(z, hxy)
+        az = np.arctan2(y, x)
+        xy = np.array([math.degrees(az), math.degrees(el)]).reshape((1, 2))
+        spher_data = np.append(spher_data, xy, axis=0)
+    return spher_data[:, 0], spher_data[:, 1]
+
 def toDesc(data):
     """
     x = r * sin(y) * cos(x)
