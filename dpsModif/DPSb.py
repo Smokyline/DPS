@@ -185,7 +185,7 @@ def m_dps(beta, a, b_dir, An, A0):
 def run(X, r, Pq, A0, dot=False, makeDPS=False, alphaOLD=False):
     if dot:
 
-        cd_dir = '{}/{}/'.format(directory, A0)
+        cd_dir = '{}/{}/'.format(res_directory, A0)
         if not os.path.exists(cd_dir):
             os.makedirs(cd_dir)
 
@@ -217,7 +217,7 @@ def run(X, r, Pq, A0, dot=False, makeDPS=False, alphaOLD=False):
         else:
             An = createAinXb(X, Xb_array, A0, r, lastBeta, cd_dir, dot=True, alphaOLD=False)
     else:
-        cd_dir = '{}{}/'.format(directory, 'q:%s;%s' % (str(q), str(len(A0))))
+        cd_dir = '{}{}/'.format(res_directory, 'q:%s;%s' % (str(q), str(len(A0))))
         if not os.path.exists(cd_dir):
             os.makedirs(cd_dir)
 
@@ -251,7 +251,7 @@ def update_data(data):
     #A = make_grid([39.65, 51.65, 36.25, 46.25, 0.25])
     #A = make_grid([40, 52, 36, 46, 0.2])
     #A = data[:2500]
-    A = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/kvz_5-7.csv').T
+    A = read_csv(workspace_path+'resources/csv/geop/kvz/kvz_5-7.csv').T
     A0 = np.array([]).astype(int)
     idx = len(data)
 
@@ -274,10 +274,12 @@ def update_data(data):
 
 
 
-SpData = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/kvz_dps3.csv').T
+workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
+
+SpData = read_csv(workspace_path+'resources/csv/geop/kvz/kvz_dps3.csv').T
 #data = toDesc(SpData)
 data = SpData
-directory = '/Users/Ivan/Documents/workspace/result/'
+res_directory = workspace_path+'result/'
 
 q = -4
 Pq = 1

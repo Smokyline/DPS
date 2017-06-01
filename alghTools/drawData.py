@@ -1,3 +1,4 @@
+import os
 import numpy as np
 import matplotlib
 matplotlib.use('Qt5Agg')
@@ -28,7 +29,7 @@ def get_border_coord():
 
     return [95, 125, 46, 61]
 
-def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=None, labels=[''], origData_name='', poly_field=False):
+def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None, eqs=None, labels=[''], origData_name='', poly_field=False):
 
     plt.clf()
     figManager = plt.get_current_fig_manager()
@@ -77,10 +78,11 @@ def visual_data(clusterA, dataX, title='', display_plot=False, direc=None, eqs=N
     plt.title(title)
     #plt.legend(loc=8, bbox_to_anchor=(0.5, -0.19), ncol=4) #altai
     plt.legend(loc=8, bbox_to_anchor=(0.5, -0.27), ncol=4)  # baikal
-    if direc is None:
-        plt.savefig('/Users/Ivan/Documents/workspace/result/' + title + '.png', dpi=400)
+    if save_path is None:
+        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
+                    'result/test/' + title + '.png', dpi=400)
     else:
-        plt.savefig(direc + title + '.png', bbox_inches='tight', pad_inches=0, dpi=400)
+        plt.savefig(save_path + title + '.png', bbox_inches='tight', pad_inches=0, dpi=400)
 
     if display_plot == True:
         plt.show()
@@ -100,7 +102,9 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
     plt.grid(True)
     plt.title(title)
     if direc is None:
-        plt.savefig('/Users/Ivan/Documents/workspace/result/' + title + '.png', dpi=500)
+        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
+                    'result/test/' + title + '.png', dpi=400)
+
     else:
         plt.savefig(direc + '.png', dpi=500)
     if disp == True:
@@ -155,12 +159,14 @@ def visual_ext(X, A_DPS, EXT, eqs, eqs_labels, cd, title, path=None):
 
 
     if path is None:
-        plt.savefig('/Users/Ivan/Documents/workspace/result/'+title+'.png', dpi=500)
+        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
+                    'result/test/' + title + '.png', dpi=400)
+
     else:
         plt.savefig(path+title+'.png', dpi=500)
     plt.close()
 
-def visual_dataPoly(dps, B, eq, xyPoly, title, direct):
+def visual_MC_dataPoly(dps, B, eq, xyPoly, title, direct):
     poly = mlpPolygon(xyPoly, fc='none', ec='b', alpha=0.6, linewidth=2)
     plt.gca().set_aspect('equal', adjustable='box')
     if B is not None:
@@ -173,7 +179,9 @@ def visual_dataPoly(dps, B, eq, xyPoly, title, direct):
     plt.title(title)
 
     if direct is None:
-        plt.savefig('/Users/Ivan/Documents/workspace/result/MonteCarlo_'+title+'.png',  dpi=500)
+        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
+                    'result/test/' + title + '.png', dpi=400)
+
     else:
         plt.savefig(direct+'MonteCarlo_'+title+'.png', dpi=500)
 
@@ -203,6 +211,26 @@ def visual_MontePlot(data_real, data_rand, title, versions, directory):
 
     plt.savefig(directory + 'MCplot.png', dpi=400)
 
+def draw_DPS_res(A, B, title, save_path=None):
+    plt.clf()
+    figManager = plt.get_current_fig_manager()
+    figManager.window.showMaximized()
+    ax = plt.gca()
+
+    ax.scatter(A[:, 0], A[:, 1], c='g', marker='.', s=30, linewidths=0, zorder=6)
+    ax.scatter(B[:, 0], B[:, 1], c='k', marker='.', s=15, linewidths=0, alpha=0.4, zorder=1)
+
+    plt.grid(True)
+    plt.title(title)
+
+    if save_path is None:
+        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
+                    'result/test/' + title + '.png', dpi=400)
+
+    else:
+        plt.savefig(save_path + title, dpi=500)
+
+    plt.close()
 
 def check_pix_ext(A, cd, pols, real_size=False):
     fig = plt.figure()

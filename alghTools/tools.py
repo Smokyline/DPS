@@ -42,7 +42,7 @@ def remove_zero_depth(data, dataDep):
     return data, sph_data
 
 
-def toDesc2(sph_x, sph_y):
+def toCast2(sph_x, sph_y):
     r = 6371
     desc_data = np.empty((0, 3))
     for i in range(len(sph_x)):
@@ -68,7 +68,7 @@ def toSpher2(data):
         az = np.arctan2(y, x)
         xy = np.array([math.degrees(az), math.degrees(el)]).reshape((1, 2))
         spher_data = np.append(spher_data, xy, axis=0)
-    return spher_data[:, 0], spher_data[:, 1]
+    return spher_data
 
 def toDesc(data):
     """

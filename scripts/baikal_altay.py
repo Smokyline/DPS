@@ -1,5 +1,5 @@
 import numpy as np
-import math
+import os
 from alghTools.tools import read_csv
 from alghTools.importData import ImportData
 
@@ -10,10 +10,10 @@ from mpl_toolkits.basemap import Basemap
 from matplotlib.patches import RegularPolygon
 from matplotlib.patches import Circle
 
-
-path = '/Users/Ivan/Documents/workspace/result/baikal/baikalAltay/'
-baikal_xy_full = read_csv(path+'ext_baikal.csv').T
-altay_xy_full = read_csv(path+'ext_altay.csv').T
+workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
+res_path = workspace_path + 'result/baikal/baikalAltay/'
+baikal_xy_full = read_csv(res_path + 'ext_baikal.csv').T
+altay_xy_full = read_csv(res_path + 'ext_altay.csv').T
 
 x_min = 95
 x_max = 102
@@ -76,6 +76,6 @@ ax.scatter([], [], marker='s', c='k', s=70, label='altai_eq5,5')
 plt.grid(True)
 plt.legend()
 
-plt.savefig(path+'union'+'.png', dpi=450)
+plt.savefig(res_path + 'union' + '.png', dpi=450)
 #plt.show()
 plt.close()

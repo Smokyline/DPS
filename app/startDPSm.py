@@ -7,7 +7,7 @@ import pandas as pd
 from dpsCore.core import dps_clust
 from dpsModif.tau_runner import t_runner
 from alghTools.tools import read_csv, toDesc, remove_zero_depth
-from alghTools.drawData import visual_data
+from alghTools.drawData import visual_eq_DPS
 from alghTools.importData import ImportData
 
 
@@ -46,7 +46,7 @@ def runDPSm_qIteration(desc_data, sph_data, bInp, save_path, epochs, Q, sample_e
 
         title = 'it={}; q={}, r={}; b={}'.format(iter, q, round(dps_set[3], 4), beta)
 
-        visual_data(twoDcoord[idx_Aclust], Bit_coord, title, False, q_dir, eqs=sample_eq, labels=eq_labels, origData_name=region_name+mc_mag)
+        visual_eq_DPS(twoDcoord[idx_Aclust], Bit_coord, title, False, q_dir, eqs=sample_eq, labels=eq_labels, origData_name=region_name + mc_mag)
 
         Adf = pd.DataFrame(Ait_coord, columns=['DPSx', 'DPSy'])
         Bdf = pd.DataFrame(Bit_coord, columns=['Bx', 'By'])
@@ -65,33 +65,31 @@ def runDPSm_qIteration(desc_data, sph_data, bInp, save_path, epochs, Q, sample_e
                       sep=';', decimal=',')
             break
 
-
+workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 region_name = 'baikal'
 mc_mag = '2.7'
 
 #imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['5,5', '5,75', '6'])
 imp = ImportData(region_name, main_mag='q', mag_array=['5,5', '5,75', '6'])
+eqs, eq_labels = imp.get_eq_stack()
 
 #desc_data = imp.data_dps
 
-desc_data = imp.read_dps_res('baikal', mod='baikal_it4_Mc2.7_II', q='-2.25')
-eqs, eq_labels = imp.get_eq_stack()
+desc_data = imp.read_dps_res('baikal', mod='baikal_it4_Mc2.7_I', q='-2.5')
+print(len(desc_data), 'data size')
 
-#desc_data = desc_data[:1000]
 
 sph_data = desc_data.copy()
 desc_data = toDesc(desc_data)
 
 
-print(len(desc_data), 'data size')
-
-Q = [-2.25]
+Q = [-2.5]
 #Q = np.arange(-2., -3.1, -0.1)
 
-epochs = 4
 
 beta_array = np.arange(-1, 1.1, 0.1).round(1)
-save_path = '/Users/Ivan/Documents/workspace/result/%s/%s_it%s_Mc%s/' % (region_name, region_name, epochs, mc_mag)
+epochs = 4
+save_path = workspace_path+'result/%s/%s_it%s_Mc%s/' % (region_name, region_name, epochs, mc_mag)
 
 
 time_start = int(round(time.time() * 1000))

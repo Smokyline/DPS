@@ -1,5 +1,5 @@
 from alghTools.tools import read_csv, toDesc
-from alghTools.drawData import visual_dataPoly
+from alghTools.drawData import visual_MC_dataPoly
 from dpsCore.core import dps_clust
 from Monte.createField import inputPoly, create_customPoly, check_data_point_in_poly
 from Monte.MonteCore import calc_eps_disc
@@ -71,8 +71,8 @@ def monteCarlo(dps, eq, polyCoord, dps_param, p, num_iter, direct=None):
     text_file.close()
 
     random_dots = inputPoly(xyPoly, num_dots=eqRcount)  # случайные точки в многоугольнике
-    visual_dataPoly(data[A], None, random_dots, xyPoly, 'random_eq'+title, direct)
-    visual_dataPoly(data[A], None, eq_dots, xyPoly, 'real_eq'+title, direct)
+    visual_MC_dataPoly(data[A], None, random_dots, xyPoly, 'random_eq' + title, direct)
+    visual_MC_dataPoly(data[A], None, eq_dots, xyPoly, 'real_eq' + title, direct)
 
 
 data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_M2_DPS.csv').T

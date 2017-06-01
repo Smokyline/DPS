@@ -4,9 +4,11 @@ from alghTools.tools import read_csv
 
 
 
-class ImportData:
+class ImportData():
     def __init__(self, zone='', main_mag='', mag_array=['5,5', '5,75', '6']):
-        res_dir = '/Users/Ivan/Documents/workspace/resources/csv/geop/%s/' % (zone)
+        self.workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
+
+        res_dir = self.workspace_path+'resources/csv/geop/%s/' % (zone)
 
 
         try:
@@ -42,7 +44,7 @@ class ImportData:
         return self.eqs, eq_labels
 
     def read_dps_res(self, zone='', mod = '', q=''):
-        self.DPS_dir = '/Users/Ivan/Documents/workspace/result/%s/%s/q=%s/' % (zone, mod, q)
+        self.DPS_dir = self.workspace_path+'result/%s/%s/q=%s/' % (zone, mod, q)
         dps_A = read_csv(self.DPS_dir + 'coord_q=%s_final.csv' % q, col=['DPSx', 'DPSy']).T
         return dps_A
 

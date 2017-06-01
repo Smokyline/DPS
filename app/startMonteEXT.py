@@ -96,9 +96,9 @@ def run_MCext():
         exts.append(read_csv(saveDir+'ext_'+versions[i]+'.csv', list('xy')).T)
     print('ext finished')
 
-    eq_ist = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
-    eq_inst = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5instA.csv').T
-    eq_inst10 = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5instC2010.csv').T
+    eq_ist = read_csv(workspace_path + 'resources/csv/geop/altaiSay/altaiSay_5,5istorA.csv').T
+    eq_inst = read_csv(workspace_path + 'resources/csv/geop/altaiSay/altaiSay_5,5instA.csv').T
+    eq_inst10 = read_csv(workspace_path + 'resources/csv/geop/altaiSay/altaiSay_5,5instC2010.csv').T
     eq_dots = np.append(eq_ist, eq_inst, axis=0)
     eq_dots = np.append(eq_dots, eq_inst10, axis=0)
 
@@ -120,9 +120,12 @@ def run_MCext():
 
     #visual_MontePlot(epsRe, epsRa, title, versions, saveDir)
 
+workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
+
+
 #versions = ['belov', 'dze']
 versions = ['dze']
 #versions = ['belov']
-saveDir = '/Users/Ivan/Documents/workspace/result/altaySay/altaiSay_control/e2xt/'
+saveDir = workspace_path + 'result/altaySay/altaiSay_control/e2xt/'
 
 run_MCext()

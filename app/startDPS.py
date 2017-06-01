@@ -1,6 +1,6 @@
 import os
 from alghTools.tools import *
-from alghTools.drawData import visual_data
+from alghTools.drawData import draw_DPS_res
 from dpsCore.core import dps_clust, calc_r
 
 
@@ -32,12 +32,12 @@ class DPS():
         return dps_sets
 
 
+workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 
-data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/baikal/baikal_DPS_2,7.csv', ['x', 'y']).T
-#data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_M2_DPS.csv', ['x', 'y']).T
+data = read_csv(workspace_path+'resources/csv/geop/baikal/baikal_DPS_2,7.csv', ['x', 'y']).T
 
-#SpData = data.copy()
-#data = toDesc(data)
+SpData = data.copy()
+data = toCast2(data[:, 0], data[:, 1])
 
 dps = DPS(data, beta=0.0, q=-2, r=0.29)
 
@@ -45,7 +45,11 @@ dps_set = dps.clustering()
 
 A, B = dps_set[0], dps_set[1]
 
-#Ac, Bc = to2DSpher(SpData, A, B)
+Ac, Bc = toSpher2(data[A]), toSpher2(data[B])
 
-visual_data(data[A], data, title='test', display_plot=False)
+
+title = 'q:%s b:%s r:%f' %(dps_set[2], dps_set[4], dps_set[3])
+draw_DPS_res(Ac, Bc, title=title)
+#visual_data(data[A], data, title, False, save_path=workspace_path+'/result/test/', eqs=sample_eq, labels=eq_labels, origData_name=region_name + mc_mag)
+
 
