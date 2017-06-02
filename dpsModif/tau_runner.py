@@ -1,8 +1,6 @@
 import numpy as np
 
 from dpsCore.core import dps_clust, calc_r
-from alghTools.tools import to2DSpher, toDesc
-from alghTools.drawData import visual_eq_DPS
 
 
 def tau_c(T, tauI):

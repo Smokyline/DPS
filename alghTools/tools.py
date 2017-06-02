@@ -26,11 +26,11 @@ def read_csv(path, col=['x', 'y']):
     return np.array(array)
 
 
-def save_coord(A, B, dir, title):
+def save_DPS_coord(A, B, path, title):
     Adf = pd.DataFrame(A, columns=['DPSx', 'DPSy'])
     Bdf = pd.DataFrame(B, columns=['Bx', 'By'])
     df = pd.concat([Adf, Bdf], axis=1)
-    df.to_csv(dir + 'coord_' + title +'.csv', index=False, header=True,
+    df.to_csv(path + title + '.csv', index=False, header=True,
               sep=';', decimal=',')
 
 def remove_zero_depth(data, dataDep):
