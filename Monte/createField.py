@@ -34,7 +34,7 @@ def random_dots(p, num_dots):
     return ran
 
 
-def inputPoly(xy, num_dots):
+def input_random_dots_in_poly(xy, num_dots):
     """возвращает случайные точки в полигоне"""
     p = Polygon(xy)
     randPoints = random_dots(p, num_dots)

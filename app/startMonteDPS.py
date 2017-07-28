@@ -1,7 +1,7 @@
 from alghTools.tools import read_csv, toDesc
 from alghTools.drawData import visual_MC_dataPoly
 from dpsCore.core import dps_clust
-from Monte.createField import inputPoly, create_customPoly, check_data_point_in_poly
+from Monte.createField import input_random_dots_in_poly, create_customPoly, check_data_point_in_poly
 from Monte.MonteCore import calc_eps_disc
 import numpy as np
 import os
@@ -20,7 +20,7 @@ def run_EQiteration(dataTrue, xyPoly, num_dots, p, iteration=100):
         if (i * 100 / iteration) % 20 == 0 and i != 0:
             print('%i of %i' % (i, iteration))
 
-        r_dots = inputPoly(xyPoly, num_dots=num_dots)
+        r_dots = input_random_dots_in_poly(xyPoly, num_dots=num_dots)
         eps_random, Ai, Bi = calc_eps_disc(dataTrue, r_dots, num_dots, p)
         A += len(Ai)
         B += len(Bi)
@@ -36,7 +36,7 @@ def run_DPSiteration(eqTrue, xyPoly, dps_param, p, iteration):
         if (i * 100 / iteration) % 20 == 0 and i != 0:
             print('%i of %i' % (i, iteration))
 
-        r_dots = inputPoly(xyPoly, num_dots=num_dots)
+        r_dots = input_random_dots_in_poly(xyPoly, num_dots=num_dots)
         rand_dps = dps_clust(r_dots, beta, q, r=None)
         Adps = rand_dps[0]
         eps_random, Ai, Bi = calc_eps_disc(r_dots[Adps], eqTrue, num_dots, p)
@@ -70,23 +70,25 @@ def monteCarlo(dps, eq, polyCoord, dps_param, p, num_iter, direct=None):
     text_file.write("%s\n%s\n%s%s" % (title, strREAL, strRANDeq, strRANDdps))
     text_file.close()
 
-    random_dots = inputPoly(xyPoly, num_dots=eqRcount)  # случайные точки в многоугольнике
+    random_dots = input_random_dots_in_poly(xyPoly, num_dots=eqRcount)  # случайные точки в многоугольнике
     visual_MC_dataPoly(data[A], None, random_dots, xyPoly, 'random_eq' + title, direct)
     visual_MC_dataPoly(data[A], None, eq_dots, xyPoly, 'real_eq' + title, direct)
 
 
-data = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_M2_DPS.csv').T
+workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
+data = read_csv(workspace_path+'resources/csv/geop/altaiSay/altaiSay_DPS_Dze.csv').T
 #eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5.csv').T
-eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_EQ4,5.csv').T
+eq_dots = read_csv(workspace_path+'resources/csv/geop/altaiSay/altaiSay_3,5.csv').T
+#eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_EQ4,5.csv').T
 
-saveDir = '/Users/Ivan/Documents/workspace/result/monte/one/'
+saveDir = workspace_path+'result/monte/altay/'
 if not os.path.exists(saveDir):
     os.makedirs(saveDir)
 
-coordPoly = [[32.5, 43], [32.5, 45.2], [44.5, 45.2], [42, 41.5], [41, 41.5], [39, 43]]  # kvz crm
-#coordPoly = [[82, 46], [82, 53], [99, 53], [99, 48], [91, 48], [91, 46]]  # altai
+#coordPoly = [[32.5, 43], [32.5, 45.2], [44.5, 45.2], [42, 41.5], [41, 41.5], [39, 43]]  # kvz crm
+coordPoly = [[82, 46], [82, 53], [99, 53], [99, 48], [91, 48], [91, 46]]  # altai
 
 p = 0.225
-num_it = 500
-dps_param = [2398, 0.1, -3]
+num_it = 10
+dps_param = [2398, 0.1, -3]  # num_dots, beta, q
 monteCarlo(data, eq_dots, coordPoly, dps_param, p, num_it, direct=saveDir)

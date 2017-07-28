@@ -17,7 +17,7 @@ def run_EQiteration(extTrue, xyPoly, num_dots, iteration=100, savedir=None):
         if (i * 100 / iteration) % 20 == 0 and i != 0:
             print('%i of %i' % (i, iteration))
 
-        rEQ_dots = inputPoly(xyPoly, num_dots=num_dots)
+        rEQ_dots = input_random_dots_in_poly(xyPoly, num_dots=num_dots)
 
         #save_points_to_txt(rEQ_dots, savedir, i)
 
@@ -63,7 +63,9 @@ def monteCarlo(ext, eq, poly_coord, num_iter, savedir=None):
 
     #random_dots = inputPoly(xyPoly, num_dots=eq_r_count)  # случайные точки в многоугольнике
     #visual_dataPoly(real_ext[A], None, random_dots, xyPoly, 'random_eq'+title, direct)
-    #visual_dataPoly(real_ext[A], None, real_eq, xyPoly, 'real_eq'+title, direct)
+    #visual_dataPoly(real_ext[A], None, real_eq, , 'real_eq'+title, direct)
+    #data_real, data_rand, title, versions, directory
+    #visual_ext(Breal, [[],], EXT, eqs, eqs_labels, cd, title, path=None)
 
 """
 def run_ext(coord, ext_param):
@@ -83,12 +85,12 @@ def run_MCext():
     field_coord = [84, 101, 45, 53]  # altai
 
     #saveDir = '/Users/Ivan/Documents/workspace/result/monte/altai_e2xt/'
-
     if not os.path.exists(saveDir):
         os.makedirs(saveDir)
 
-    ext_param = -4.25, -2.0, 0.05  # omega v delta bel
-    #ext_param = -4, -2.25, 0.05  # omega v delta dze
+
+    #ext_param = -4.25, -2.0, 0.05  # omega v delta bel
+    ext_param = -4, -2.25, 0.05  # omega v delta dze
 
     #ext = run_ext(field_coord, ext_param)
     exts = []
@@ -102,7 +104,9 @@ def run_MCext():
     eq_dots = np.append(eq_ist, eq_inst, axis=0)
     eq_dots = np.append(eq_dots, eq_inst10, axis=0)
 
-    num_it = 500
+    #eq_dots = read_csv(workspace_path + 'resources/csv/geop/altaiSay/altaiSay_3,5.csv').T
+
+    num_it = 1
     epsRe, epsRa = [], []
     #for i, ext in enumerate(exts):
     for i, ext in enumerate(exts):
@@ -127,5 +131,7 @@ workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/worksp
 versions = ['dze']
 #versions = ['belov']
 saveDir = workspace_path + 'result/altaySay/altaiSay_control/e2xt/'
+original_umask = os.umask(0)
 
 run_MCext()
+os.umask(original_umask)

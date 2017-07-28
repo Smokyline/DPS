@@ -1,19 +1,20 @@
-
-
 import numpy as np
-import matplotlib
-matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
+import scipy.interpolate
 
+# Generate data:
+x, y, z = 10 * np.random.random((3,10))
 
-data = np.random.rand(10, 2)
+# Set up a regular grid of interpolation points
+xi, yi = np.linspace(x.min(), x.max(), 100), np.linspace(y.min(), y.max(), 100)
+xi, yi = np.meshgrid(xi, yi)
 
-plt.clf()
-figManager = plt.get_current_fig_manager()
-figManager.window.showMaximized()
-ax = plt.gca()
+# Interpolate
+rbf = scipy.interpolate.Rbf(x, y, z, function='linear')
+zi = rbf(xi, yi)
 
-for X,Y in data:
-    ax.scatter(X, Y, c=next(cycol))
-
-plt.show()
+plt.imshow(zi, vmin=z.min(), vmax=z.max(), origin='lower',
+           extent=[x.min(), x.max(), y.min(), y.max()])
+plt.scatter(x, y, c=z)
+plt.colorbar()
+#plt.show()
