@@ -25,16 +25,23 @@ import math
 def get_border_coord():
     # coord = [40, 52, 37, 45] #kvz
     # coord = [84, 102, 45, 56] #altai
-    # coord = [75, 105, 45, 55]  # altai
+    #coord = [75, 105, 45, 55]  # altai
+    #coord = [95, 125, 46, 61] # baikal
+    #coord = [154, 171, 48, 61] #kmch
+    coord = [-84, -64, -46, 6]
 
-    return [95, 125, 46, 61]
+    return coord
 
 def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None, eqs=None, labels=[''], origData_name='', poly_field=False):
 
-    plt.clf()
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
-    ax = plt.gca()
+    #plt.clf()
+    #figManager = plt.get_current_fig_manager()
+    #figManager.window.showMaximized()
+    #ax = plt.gca()
+
+
+    fig = plt.figure(figsize=(12, 9))
+    ax = fig.add_subplot(111)
 
 
     cd = get_border_coord()
@@ -42,7 +49,7 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
                 llcrnrlon=cd[0], urcrnrlon=cd[1],
                 resolution='l')
     m.drawcountries(zorder=1, linewidth=1)
-    parallels = np.arange(0., 90, 2)
+    parallels = np.arange(-90., 90, 2)
     m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
     meridians = np.arange(0., 360, 2)
     m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
@@ -52,10 +59,10 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
         ax.add_patch(patches.Polygon(poly_field, edgecolor='b', facecolor='none', alpha=0.9, lw=1.5, zorder=1))
 
     plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=35, linewidths=0, alpha=0.55, label=origData_name, zorder=1)
-    plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=150, linewidths=0.05, label='DPS clust', zorder=2)
+    plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=100, linewidths=0.05, label='DPS clust', zorder=2)
 
     if eqs is not None:
-        clr = ['b', 'r', 'y', 'c', '#533126', 'm']
+        clr = ['c', 'b', 'y', 'r', '#533126', 'm']
         #clr = [next(cycol) for i in range(len(eqs))]
 
         c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
@@ -67,7 +74,7 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
             for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
 
                 circleA = ax.add_artist(Circle(xy=(x, y),
-                                                   radius=r, alpha=0.9, linewidth=3.5, zorder=4,
+                                                   radius=r, alpha=0.8, linewidth=3, zorder=4,
                                                    edgecolor=clr[col], facecolor='none', label=labels[col]))
 
             plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=labels[col],
@@ -77,7 +84,7 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
     plt.grid(True)
     plt.title(title)
     #plt.legend(loc=8, bbox_to_anchor=(0.5, -0.19), ncol=4) #altai
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.27), ncol=4)  # baikal
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.10), ncol=4)  # baikal
     if save_path is None:
         plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
                     'result/test/' + title + '.png', dpi=400)
@@ -97,7 +104,7 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
     if xdata is not None:
         plt.scatter(xdata[:, 0], xdata[:, 1], c='g', marker='.', s=8, linewidths=0)
 
-    # eq = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/geop/kvz/kvz_nEQ.csv').T
+    # eq = read_csv('/Users/Ivan/Documents/workspace/resourses/csv/GEO/kvz/kvz_nEQ.csv').T
     # plt.scatter(eq[:, 0], eq[:, 1], c='b', marker='^', s=17, linewidths=0.1)
     plt.grid(True)
     plt.title(title)

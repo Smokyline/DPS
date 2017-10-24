@@ -251,7 +251,7 @@ def update_data(data):
     #A = make_grid([39.65, 51.65, 36.25, 46.25, 0.25])
     #A = make_grid([40, 52, 36, 46, 0.2])
     #A = data[:2500]
-    A = read_csv(workspace_path+'resources/csv/geop/kvz/kvz_5-7.csv').T
+    A = read_csv(workspace_path+'resources/csv/GEO/kvz/kvz_5-7.csv').T
     A0 = np.array([]).astype(int)
     idx = len(data)
 
@@ -276,7 +276,7 @@ def update_data(data):
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 
-SpData = read_csv(workspace_path+'resources/csv/geop/kvz/kvz_dps3.csv').T
+SpData = read_csv(workspace_path+'resources/csv/GEO/kvz/kvz_dps3.csv').T
 #data = toDesc(SpData)
 data = SpData
 res_directory = workspace_path+'result/'

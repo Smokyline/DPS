@@ -34,7 +34,7 @@ class DPS():
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 
-data = read_csv(workspace_path+'resources/csv/geop/baikal/baikal_DPS_2,7.csv', ['x', 'y']).T
+data = read_csv(workspace_path+'resources/csv/GEO/baikal/baikal_DPS_2,7.csv', ['x', 'y']).T
 
 SpData = data.copy()
 data = toCast2(data[:, 0], data[:, 1])

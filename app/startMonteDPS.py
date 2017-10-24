@@ -76,10 +76,10 @@ def monteCarlo(dps, eq, polyCoord, dps_param, p, num_iter, direct=None):
 
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
-data = read_csv(workspace_path+'resources/csv/geop/altaiSay/altaiSay_DPS_Dze.csv').T
-#eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/altaiSay/altaiSay_5,5.csv').T
-eq_dots = read_csv(workspace_path+'resources/csv/geop/altaiSay/altaiSay_3,5.csv').T
-#eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/geop/kvz/KAV_CRIM_EQ4,5.csv').T
+data = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_DPS_Dze.csv').T
+#eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/GEO/altaiSay/altaiSay_5,5.csv').T
+eq_dots = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_3,5.csv').T
+#eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/GEO/kvz/KAV_CRIM_EQ4,5.csv').T
 
 saveDir = workspace_path+'result/monte/altay/'
 if not os.path.exists(saveDir):

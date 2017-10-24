@@ -46,9 +46,7 @@ def t_runner_mp(data, Q, beta_array):
             ans.append([b_and_q_comb[i], y, t])
     ans = np.array(ans)
 
-    print('\n------------------')
-    for y in ans:
-        print(y)
+
 
     close_idx = np.argmin(abs(ans[:, 1] - 0.2))
     best_beta, best_q = b_and_q_comb[close_idx]

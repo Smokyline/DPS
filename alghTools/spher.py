@@ -68,7 +68,7 @@ def toDesc(data):
     return desc_data
 
 
-data = read_csv('//Users/Ivan/Documents/workspace/resources/csv/geop/kvz/kvz_dps.csv').T
+data = read_csv('//Users/Ivan/Documents/workspace/resources/csv/GEO/kvz/kvz_dps.csv').T
 #data = read_csv('//Users/Ivan/Documents/workspace/resources/csv/samer.csv').T
 
 desc_data = toDesc(data)
