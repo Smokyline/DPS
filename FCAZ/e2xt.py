@@ -6,6 +6,7 @@ import pandas as pd
 from itertools import product
 import math
 import sys
+import os
 
 def createGrid(delta, coord):
 
@@ -54,16 +55,22 @@ def ext_run(A, omega=-4, v=-3, delta=0.05, coord=None):
 
 
 def run():
+    region_name = 'kmch'
+    mc_mag = '3.5'
+    target_it = 4
 
-    imp = ImportData(zone='baikal', main_mag='2,7', mag_array=['5,5', '5,75', '6'])
-    DPS_A = imp.read_dps_res(zone='baikal', mod='baikal_it4_Mc2.7_III', q='-2.25')
+    imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','),
+                     mag_array=['7', '7,5', '8'])
+    DPS_A = imp.read_dps_res(zone=region_name,
+                             mod=region_name+'_III', q='[-2.0; -3.0]', iter=target_it)
+
     origin_data = imp.data_dps
     dps_dir = imp.DPS_dir
     eqs, eqs_labels = imp.get_eq_stack()
 
     """param"""
-    omega = -5
-    v = -2.75
+    omega = -4
+    v = -2.25
     delta = 0.05
 
     coord = get_border_coord()
@@ -83,4 +90,6 @@ def run():
     Adf.to_csv(dps_dir + 'ext2.csv', index=False, header=True,
               sep=';', decimal=',')
 
+original_umask = os.umask(0)
 run()
+os.umask(original_umask)

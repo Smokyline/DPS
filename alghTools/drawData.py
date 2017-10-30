@@ -27,8 +27,8 @@ def get_border_coord():
     # coord = [84, 102, 45, 56] #altai
     #coord = [75, 105, 45, 55]  # altai
     #coord = [95, 125, 46, 61] # baikal
-    #coord = [154, 171, 48, 61] #kmch
-    coord = [-84, -64, -46, 6]
+    coord = [154, 171, 48, 61] #kmch
+    #coord = [-84, -64, -46, 6]
 
     return coord
 
@@ -43,12 +43,13 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
     fig = plt.figure(figsize=(12, 9))
     ax = fig.add_subplot(111)
 
-
     cd = get_border_coord()
     m = Basemap(llcrnrlat=cd[2], urcrnrlat=cd[3],
                 llcrnrlon=cd[0], urcrnrlon=cd[1],
                 resolution='l')
     m.drawcountries(zorder=1, linewidth=1)
+    m.arcgisimage(service='World_Shaded_Relief', xpixels=1500, verbose=True, zorder=0)
+
     parallels = np.arange(-90., 90, 2)
     m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
     meridians = np.arange(0., 360, 2)
@@ -84,7 +85,7 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
     plt.grid(True)
     plt.title(title)
     #plt.legend(loc=8, bbox_to_anchor=(0.5, -0.19), ncol=4) #altai
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.10), ncol=4)  # baikal
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)  # baikal
     if save_path is None:
         plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
                     'result/test/' + title + '.png', dpi=400)
@@ -120,28 +121,28 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
 
 
 def visual_ext(X, A_DPS, EXT, eqs, eqs_labels, cd, title, path=None):
-    plt.clf()
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
-    ax = plt.gca()
+    fig = plt.figure(figsize=(12, 9))
+    ax = fig.add_subplot(111)
 
     cd = get_border_coord()
     m = Basemap(llcrnrlat=cd[2], urcrnrlat=cd[3],
                 llcrnrlon=cd[0], urcrnrlon=cd[1],
                 resolution='l')
     m.drawcountries(zorder=1, linewidth=1)
-    parallels = np.arange(0., 90, 2)
+    m.arcgisimage(service='World_Shaded_Relief', xpixels=1500, verbose=True, zorder=0)
+
+    parallels = np.arange(-90., 90, 2)
     m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
     meridians = np.arange(0., 360, 2)
     m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
 
 
     ax.scatter(X[:, 0], X[:, 1], c='k', marker='.', s=45, linewidths=0.0, label='X')
-    ax.scatter(EXT[:, 0], EXT[:, 1], c='g', marker='s', s=110, linewidths=0.0, label='e2xt')
-    ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='#fd41cd', marker='.', s=75, linewidths=0.1, label='DPS')
+    ax.scatter(EXT[:, 0], EXT[:, 1], c='#fd41cd', marker='s', s=110, linewidths=0.0, label='e2xt')
+    ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=75, linewidths=0.1, label='DPS')
 
     if eqs is not None:
-        clr = ['b', 'r', 'y', 'c', '#533126', '#8bf806']
+        clr = ['c', 'b', 'y', 'r', '#533126', 'm']
         #clr = [next(cycol) for i in range(len(eqs))]
 
         c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
@@ -153,16 +154,17 @@ def visual_ext(X, A_DPS, EXT, eqs, eqs_labels, cd, title, path=None):
             for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
 
                 circleA = ax.add_artist(Circle(xy=(x, y),
-                                                   radius=r, alpha=0.9, linewidth=3.5, zorder=4,
+                                                   radius=r, alpha=0.8, linewidth=3, zorder=4,
                                                    edgecolor=clr[col], facecolor='none', label=eqs_labels[col]))
 
             plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
                             zorder=4)
 
 
+
     plt.grid(True)
     plt.title(title)
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.21), ncol=4)
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)
 
 
     if path is None:

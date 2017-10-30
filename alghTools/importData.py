@@ -19,30 +19,36 @@ class ImportData():
 
 
         self.mag_str = mag_array
-        self.mag_type = ['instr']
-
 
         self.eqs = []
-        eqs_istor = []
+        self.eq_labels = []
 
         for mag in self.mag_str:
 
-            eq_instr = read_csv(res_dir + '%s_%sinstr.csv' % (zone, mag), ['x', 'y']).T
-            self.eqs.append(eq_instr)
+
+
             try:
-                eq_istor = read_csv(res_dir + '%s_%sistor.csv' % (zone, mag), ['x', 'y']).T
-                eqs_istor.append(eq_istor)
+                eq_instr = read_csv(res_dir + '%s_%sinstr.csv' % (zone, mag), ['x', 'y']).T
+                self.eqs.append(eq_instr)
+                self.eq_labels.append('M%s%s' % (mag, 'instr'))
             except:
                 pass
-        if len(eqs_istor) > 0:
-            self.mag_type.append('istor')
-            self.eqs.extend(eqs_istor)
+
+            try:
+                eq_istor = read_csv(res_dir + '%s_%sistor.csv' % (zone, mag), ['x', 'y']).T
+                #eqs_istor.append(eq_istor)
+                self.eqs.append(eq_istor)
+                self.eq_labels.append('M%s%s' % (mag, 'istor'))
+
+            except:
+                pass
+
 
 
 
     def get_eq_stack(self):
-        eq_labels = ['M%s%s' % (mag, tp) for tp in self.mag_type for mag in self.mag_str]
-        return self.eqs, eq_labels
+
+        return self.eqs, self.eq_labels
 
     def read_dps_res(self, zone='', mod = '', q='', iter=1):
         self.DPS_dir = self.workspace_path+'result/DPS/%s/%s/q=%s/' % (zone, mod, q)

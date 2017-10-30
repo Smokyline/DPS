@@ -60,21 +60,21 @@ def runDPSm_qIteration(desc_data, sph_data, save_path, epochs, Q, sample_eq, mul
 
 original_umask = os.umask(0)
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
-region_name = 'andes'
-mc_mag = '4.5'
-epochs = 3
+region_name = 'kmch'
+mc_mag = '3.5'
+epochs = 4
 # COORD MAP!!!
 
-imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['7,5', '7,75', '8'])
+imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['7', '7,5', '8'])
 #imp = ImportData(region_name, main_mag=None, mag_array=['5,5', '5,75', '6'])
 eqs, eq_labels = imp.get_eq_stack()
 
 
 # DPS set
-#desc_data = imp.data_dps
+desc_data = imp.data_dps
 
-target_iter = 4
-desc_data = imp.read_dps_res(zone=region_name,mod='%s_%s' % (region_name, 'II'), q='-2.5', iter=target_iter)
+target_iter = 2
+#desc_data = imp.read_dps_res(zone=region_name,mod='%s_%s' % (region_name, 'I'), q='[-2.0; -3.0]', iter=target_iter)
 
 print(len(desc_data), 'data size')
 
@@ -82,12 +82,12 @@ sph_data = desc_data.copy()
 desc_data = toDesc(desc_data)
 
 
-Q = [-2.5]
-#Q = np.arange(-2., -3.1, -0.1)
+#Q = [-2.75]
+Q = np.arange(-2., -3.1, -0.1)
 
 
 # save
-k_iter = 'III'
+k_iter = 'I'
 beta_array = np.arange(-1, 1.1, 0.1).round(2)
 save_path = workspace_path+'result/DPS/%s/%s_%s/' % (region_name, region_name, k_iter)
 
