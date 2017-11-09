@@ -1,8 +1,8 @@
 from alghTools.tools import read_csv, toDesc
 from alghTools.drawData import visual_MC_dataPoly
 from dpsCore.core import dps_clust
-from Monte.createField import input_random_dots_in_poly, create_customPoly, check_data_point_in_poly
-from Monte.MonteCore import calc_eps_disc
+from Monte.create_ext_squares import input_random_dots_in_poly, create_customPoly, check_data_point_in_poly
+from Monte.core import calc_eps_disc
 import numpy as np
 import os
 

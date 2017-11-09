@@ -4,22 +4,26 @@ matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import os
+from alghTools.drawData import get_border_coord
 
 
 
 
 def calcW_pix_ext(ext_data, eq_data, xy_Poly):
-    fig = plt.figure()
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
-    ax = plt.gca()
+    #fig = plt.figure()
+    #figManager = plt.get_current_fig_manager()
+    #figManager.window.showMaximized()
+    #ax = plt.gca()
+
+    fig, ax = plt.subplots(figsize=(9,9))
+
+
     plt.axis('off')
 
 
-    xmin, xmax = np.min(xy_Poly[:, 0]), np.max(xy_Poly[:, 0])
-    ymin, ymax = np.min(xy_Poly[:, 1]), np.max(xy_Poly[:, 1])
-    plt.xlim(xmin, xmax)
-    plt.ylim(ymin, ymax)
+    cd = get_border_coord()
+    plt.xlim(cd[0], cd[1])
+    plt.ylim(cd[2], cd[3])
     center_x, center_y = np.mean(xy_Poly[:, 0]), np.mean(xy_Poly[:, 1])
 
     def calc_len_pix():
@@ -40,7 +44,7 @@ def calcW_pix_ext(ext_data, eq_data, xy_Poly):
 
     #ax.add_patch(patches.Polygon(pols, color='#008000', zorder=0))
 
-    test_dot = ax.scatter(center_x, center_y, marker='o', c='#ff0000', lw=0, s=70, zorder=2)
+    test_dot = ax.scatter(center_x, center_y, marker='o', c='#ff0000', lw=0, s=350, zorder=2)
     one_dot_leng = calc_len_pix()
     test_dot.set_visible(False)
 
@@ -52,14 +56,14 @@ def calcW_pix_ext(ext_data, eq_data, xy_Poly):
     miss_points = 0
 
     for i, xy in enumerate(eq_data):
-        r = ax.scatter(xy[0], xy[1], marker='o', c='#ff0000', lw=0, s=70, zorder=2)
+        r = ax.scatter(xy[0], xy[1], marker='o', c='#ff0000', lw=0, s=350, zorder=2)
         a_r = calc_len_pix()
 
         if np.abs(zero_r - a_r) < one_dot_leng:
             acc_points += 1
             w += 1
         else:
-            #plt.savefig('/Users/Ivan/Documents/workspace/result/tmp/' + 'figD' +str(i+1)+ '.png', dpi=100)
+            #plt.savefig('/home/ivan/Documents/workspace/result/tmp/' + 'figD' +str(i+1)+ '.png', dpi=100)
             miss_points += 1
         r.set_visible(False)
 

@@ -1,12 +1,13 @@
-from FCAZ.e2xt import *
-from Monte.createField import *
-from Monte.MonteEXT import *
-from alghTools.drawData import visual_MontePlot
-from alghTools.tools import read_csv
+from E2XT.e2xt import *
+from Monte.create_ext_squares import *
+from Monte.plotingMonteEXT import *
+from alghTools.drawData import visual_MontePlot, check_pix_ext
+from alghTools.tools import read_csv_pandas
 import numpy as np
 import os
 
 
+from alghTools.drawData import visual_MC_dataPoly
 
 
 def run_EQiteration(extTrue, xyPoly, num_dots, iteration=100, savedir=None):
@@ -67,71 +68,58 @@ def monteCarlo(ext, eq, poly_coord, num_iter, savedir=None):
     #data_real, data_rand, title, versions, directory
     #visual_ext(Breal, [[],], EXT, eqs, eqs_labels, cd, title, path=None)
 
-"""
-def run_ext(coord, ext_param):
-
-    dir_dps = '/Users/Ivan/Documents/workspace/resources/csv/GEO/altaiSay/'
-    A = read_csv(dir_dps + 'altaiSay_'+versions[0]+'.csv', ['DPSx', 'DPSy']).T
-
-    omega, v, delta = ext_param
-    Z = createGrid(delta, coord)
-    ZA = D_pa(A, Z, omega, v)
-    return ZA
-"""
-def run_MCext():
-    pols_coords = [[84, 47], [84, 53], [101, 53], [101, 48.5], [91.5, 48.5], [91.5, 45.5], [89, 45.5], [89, 47]]
-    # coord = [40, 52, 37, 45] #kvz
-    # coord = [84, 102, 45, 56] #altai
-    field_coord = [84, 101, 45, 53]  # altai
-
-    #saveDir = '/Users/Ivan/Documents/workspace/result/monte/altai_e2xt/'
-    if not os.path.exists(saveDir):
-        os.makedirs(saveDir)
 
 
-    #ext_param = -4.25, -2.0, 0.05  # omega v delta bel
-    ext_param = -4, -2.25, 0.05  # omega v delta dze
+def get_pols_coord():
+    #pols_coords = [[84, 47], [84, 53], [101, 53], [101, 48.5], [91.5, 48.5], [91.5, 45.5], [89, 45.5], [89, 47]]
+    pols_coord = [[155, 49], [155, 51], [157, 52.2], [157.3,53.7], [159, 56.5],
+                  [162.5, 56.6], [165, 56.6], [167.7,55.5], [167, 54], [164.5,54],
+                  [159, 49],[155, 49]]
 
-    #ext = run_ext(field_coord, ext_param)
-    exts = []
-    for i in range(len(versions)):
-        exts.append(read_csv(saveDir+'ext_'+versions[i]+'.csv', list('xy')).T)
-    print('ext finished')
+    return pols_coord
 
-    eq_ist = read_csv(workspace_path + 'resources/csv/GEO/altaiSay/altaiSay_5,5istorA.csv').T
-    eq_inst = read_csv(workspace_path + 'resources/csv/GEO/altaiSay/altaiSay_5,5instA.csv').T
-    eq_inst10 = read_csv(workspace_path + 'resources/csv/GEO/altaiSay/altaiSay_5,5instC2010.csv').T
-    eq_dots = np.append(eq_ist, eq_inst, axis=0)
-    eq_dots = np.append(eq_dots, eq_inst10, axis=0)
+def import_dps_and_ext():
+    ext_data = read_csv_pandas(save_path + 'ext2.csv')
+    dps = read_csv_pandas(save_path + 'DPS.csv')
 
-    #eq_dots = read_csv(workspace_path + 'resources/csv/GEO/altaiSay/altaiSay_3,5.csv').T
+    return dps, ext_data
 
-    num_it = 1
-    epsRe, epsRa = [], []
-    #for i, ext in enumerate(exts):
-    for i, ext in enumerate(exts):
-        print(versions[i], end='\n')
-        eps_real, eps_rand, title, strREAL, strRANDeq = monteCarlo(ext, eq_dots, pols_coords, num_it, saveDir)
-        epsRe.append([eps_real for n in range(num_it)])
-        epsRa.append(eps_rand)
-
-
-        text_file = open(saveDir + "monte_log" + versions[i] + ".txt", "w")
-        text_file.write("%s\n%s\n%s" % (title, strREAL, strRANDeq))
-        text_file.close()
-
-
-
-    #visual_MontePlot(epsRe, epsRa, title, versions, saveDir)
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 
 
-#versions = ['belov', 'dze']
-versions = ['dze']
-#versions = ['belov']
-saveDir = workspace_path + 'result/altaySay/altaiSay_control/e2xt/'
-original_umask = os.umask(0)
+region_name = 'kmch'
+k_iter = 'III'
+mc_mag = '3.5'
+mag_array = ['7', '7,5', '8']
+q='[-2.0; -3.0]'
 
-run_MCext()
+
+save_path = workspace_path + 'result/DPS/%s/%s_%s/q=%s/' % (region_name, region_name, k_iter, q)
+eq_dots = read_csv_pandas('/home/ivan/Documents/workspace/resources/csv/GEO/%s/%s_%smonte.csv'%(
+    region_name, region_name, '8'))  # monte M>=
+
+original_umask = os.umask(0)
+if not os.path.exists(save_path):
+    os.makedirs(save_path)
+
+dps, ext_data = import_dps_and_ext()
+pols_coord = get_pols_coord()
+visual_MC_dataPoly(dps[:, :2], dps[:, 2:], ext_data, eq_dots, pols_coord, title='pols', direct=save_path)
+
+s_ext = check_pix_ext(ext_data, pols_coord)
+print('S ext: %s' % s_ext)
+
+# monte carlo
+num_it = 500
+
+epsRe, epsRa = [], []
+eps_real, eps_rand, title, strREAL, strRANDeq = monteCarlo(ext_data, eq_dots, pols_coord,
+                                                           num_it, save_path)
+
+
+text_file = open(save_path + "monte_log.txt", "w")
+text_file.write("%s\n%s\n%s" % (title, strREAL, strRANDeq))
+text_file.close()
+
 os.umask(original_umask)

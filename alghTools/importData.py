@@ -12,7 +12,7 @@ class ImportData():
 
 
         try:
-            self.data_dps = read_csv(res_dir + '%s_DPS_%s.csv' % (zone, main_mag), col=['x', 'y']).T
+            self.data_to_dps = read_csv(res_dir + '%s_DPS_%s.csv' % (zone, main_mag), col=['x', 'y']).T
         except Exception as e:
             print(e)
             print('dps import fail')
@@ -25,21 +25,22 @@ class ImportData():
 
         for mag in self.mag_str:
 
+            try:
+                eq_istor = read_csv(res_dir + '%s_%sistor.csv' % (zone, mag), ['x', 'y']).T
+                # eqs_istor.append(eq_istor)
+                self.eqs.append(eq_istor)
+                self.eq_labels.append('M%s%s' % (mag, 'istor'))
+                print('eq M%s%s add count:%i' % (mag, 'istor', len(eq_istor)))
 
+
+            except:
+                pass
 
             try:
                 eq_instr = read_csv(res_dir + '%s_%sinstr.csv' % (zone, mag), ['x', 'y']).T
                 self.eqs.append(eq_instr)
                 self.eq_labels.append('M%s%s' % (mag, 'instr'))
-            except:
-                pass
-
-            try:
-                eq_istor = read_csv(res_dir + '%s_%sistor.csv' % (zone, mag), ['x', 'y']).T
-                #eqs_istor.append(eq_istor)
-                self.eqs.append(eq_istor)
-                self.eq_labels.append('M%s%s' % (mag, 'istor'))
-
+                print('eq M%s%s add count:%i' % (mag, 'instr', len(eq_instr)))
             except:
                 pass
 

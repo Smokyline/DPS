@@ -27,7 +27,7 @@ def get_border_coord():
     # coord = [84, 102, 45, 56] #altai
     #coord = [75, 105, 45, 55]  # altai
     #coord = [95, 125, 46, 61] # baikal
-    coord = [154, 171, 48, 61] #kmch
+    coord = [154, 168, 48, 57] #kmch
     #coord = [-84, -64, -46, 6]
 
     return coord
@@ -120,7 +120,7 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
     plt.close(fig)
 
 
-def visual_ext(X, A_DPS, EXT, eqs, eqs_labels, cd, title, path=None):
+def visual_FCAZ(X, A_DPS, EXT, eqs, eqs_labels, title, path=None):
     fig = plt.figure(figsize=(12, 9))
     ax = fig.add_subplot(111)
 
@@ -175,13 +175,21 @@ def visual_ext(X, A_DPS, EXT, eqs, eqs_labels, cd, title, path=None):
         plt.savefig(path+title+'.png', dpi=500)
     plt.close()
 
-def visual_MC_dataPoly(dps, B, eq, xyPoly, title, direct):
+def visual_MC_dataPoly(dps, B, ext, eq, xyPoly, title, direct):
     poly = mlpPolygon(xyPoly, fc='none', ec='b', alpha=0.6, linewidth=2)
-    plt.gca().set_aspect('equal', adjustable='box')
+    fig, ax = plt.subplots(figsize=(9,9))
+    cd = get_border_coord()
+    plt.xlim(cd[0], cd[1])
+    plt.ylim(cd[2], cd[3])
+
+
     if B is not None:
         plt.scatter(B[:, 0], B[:, 1], c='k', marker='.', s=9, alpha=0.3, linewidths=0)
+
+    plt.scatter(ext[:, 0], ext[:, 1], c='#fd41cd', marker='s', s=110, linewidths=0.0, label='e2xt')
+
     plt.scatter(dps[:, 0], dps[:, 1], c='g', marker='.', s=15, linewidths=0)
-    plt.scatter(eq[:, 0], eq[:, 1], c='r',  marker='o', s=30, linewidths=0.5)
+    plt.scatter(eq[:, 0], eq[:, 1], c='r',  marker='o', s=350, linewidths=0.5)# eq square
 
     plt.gca().add_patch(poly)
     plt.grid(True)
@@ -196,7 +204,7 @@ def visual_MC_dataPoly(dps, B, eq, xyPoly, title, direct):
 
     plt.close()
 
-def visual_MontePlot(data_real, data_rand, title, versions, directory):
+def visual_MontePlot(data_real, data_rand, title, directory):
     plt.clf()
     figManager = plt.get_current_fig_manager()
     figManager.window.showMaximized()
@@ -207,7 +215,7 @@ def visual_MontePlot(data_real, data_rand, title, versions, directory):
 
     colors = ['r', 'b']
     for c, r in enumerate(data_real):
-        ax.plot([i*100 for i in r], c=colors[c], linestyle='--', zorder=1, markersize=20, label=versions[c])
+        ax.plot([i*100 for i in r], c=colors[c], linestyle='--', zorder=1, markersize=20)
 
     for c, r in enumerate(data_rand):
         ax.plot([i*100 for i in r], c=colors[c], linestyle='-', zorder=2, markersize=15)
@@ -241,13 +249,15 @@ def draw_DPS_res(A, B, title, save_path=None):
 
     plt.close()
 
-def check_pix_ext(A, cd, pols, real_size=False):
+def check_pix_ext(A, pols, real_size=False):
     fig = plt.figure()
 
     figManager = plt.get_current_fig_manager()
     figManager.window.showMaximized()
     ax = plt.gca()
 
+
+    cd = get_border_coord()
     plt.xlim(cd[0], cd[1])
     plt.ylim(cd[2], cd[3])
 
@@ -259,7 +269,7 @@ def check_pix_ext(A, cd, pols, real_size=False):
             ax.add_artist(RegularPolygon(xy=(xy[0], xy[1]), numVertices=4, radius=delta, orientation=math.pi / 4, lw=0,
                                          color='r', label='e2xt'))
     else:
-        plt.scatter(A[:, 0], A[:, 1], c='#ff0000', marker='s', s=120, linewidths=0.0, alpha=1, zorder=2)
+        plt.scatter(A[:, 0], A[:, 1], c='#ff0000', marker='s', s=110, linewidths=0.0, alpha=1, zorder=2)
 
     fig.canvas.draw()
 

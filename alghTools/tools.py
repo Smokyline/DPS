@@ -26,6 +26,11 @@ def read_csv(path, col=['x', 'y']):
     return np.array(array)
 
 
+def read_csv_pandas(path):
+    df = pd.read_csv(path, delimiter=';', header=0, decimal=',')
+    return np.array(df)
+
+
 def save_DPS_coord(A, B, path, title):
     Adf = pd.DataFrame(A, columns=['DPSx', 'DPSy'])
     Bdf = pd.DataFrame(B, columns=['Bx', 'By'])

@@ -1,4 +1,4 @@
-from alghTools.drawData import visual_ext, check_pix_ext, get_border_coord
+from alghTools.drawData import visual_FCAZ, check_pix_ext, get_border_coord
 from alghTools.importData import ImportData
 from dpsCore.core import dps_clust
 import numpy as np
@@ -54,24 +54,21 @@ def ext_run(A, omega=-4, v=-3, delta=0.05, coord=None):
     return ZA
 
 
-def run():
-    region_name = 'kmch'
-    mc_mag = '3.5'
-    target_it = 4
+def run_sfcaz(omega, v, delta, region_name, mc_mag, mag_array, q, read_k, target_it):
 
     imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','),
-                     mag_array=['7', '7,5', '8'])
+                     mag_array=mag_array)
     DPS_A = imp.read_dps_res(zone=region_name,
-                             mod=region_name+'_III', q='[-2.0; -3.0]', iter=target_it)
+                             mod=region_name+'_%s'%read_k, q=q, iter=target_it)
 
-    origin_data = imp.data_dps
+    origin_data = imp.data_to_dps
     dps_dir = imp.DPS_dir
     eqs, eqs_labels = imp.get_eq_stack()
 
     """param"""
-    omega = -4
-    v = -2.25
-    delta = 0.05
+    #omega = -4
+    #v = -2.25
+    #delta = 0.05
 
     coord = get_border_coord()
 
@@ -80,16 +77,18 @@ def run():
 
     EXT = D_pa(DPS_A, Z, omega, v)
 
-    pers = check_pix_ext(EXT, coord, pols=[[coord[0], coord[2]], [coord[0], coord[3]],
+    pers = check_pix_ext(EXT, pols=[[coord[0], coord[2]], [coord[0], coord[3]],
                                            [coord[1], coord[3]], [coord[1], coord[2]]])
 
+    original_umask = os.umask(0)
     title = 'ext S=%s delta=%s omega=%s v=%s' % (pers, delta, omega, v)
-    visual_ext(origin_data, DPS_A, EXT, eqs, eqs_labels, coord, title, path=dps_dir)
+    visual_FCAZ(origin_data, DPS_A, EXT, eqs, eqs_labels, title, path=dps_dir)
 
     Adf = pd.DataFrame(EXT, columns=['x', 'y'])
     Adf.to_csv(dps_dir + 'ext2.csv', index=False, header=True,
               sep=';', decimal=',')
+    os.umask(original_umask)
 
-original_umask = os.umask(0)
-run()
-os.umask(original_umask)
+
+
+
