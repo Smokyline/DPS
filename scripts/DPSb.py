@@ -2,9 +2,9 @@ import matplotlib
 matplotlib.use('Qt4Agg')
 import matplotlib.pyplot as plt
 import numpy as np
-from dpsModif.DPSold import calc_a, calc_r, dps_clust, calc_p, searchAlphaIndex
-from alghTools.tools import read_csv
-from alghTools.drawData import visual_dps_iter
+from scripts.DPSold import calc_a, calc_r, dps_clust, calc_p, searchAlphaIndex
+from fcaz_modules.tools import read_csv
+from fcaz_modules.drawData import visual_dps_iter
 from itertools import product
 import os
 import sys
@@ -150,7 +150,7 @@ def checkXinXb(Xb, A0):
     return True
 
 def m_dps(beta, a, b_dir, An, A0):
-    dpsSaveDir = b_dir + 'dpsCore/'
+    dpsSaveDir = b_dir + 'main/'
     if not os.path.exists(dpsSaveDir):
         os.makedirs(dpsSaveDir)
 
@@ -179,7 +179,7 @@ def m_dps(beta, a, b_dir, An, A0):
             updA = DPS_clust
             it += 1
     print('A:{}; B:{}'.format(len(dps_set[0]), len(dps_set[1])))
-    print('dpsCore iteration:{}'.format(it))
+    print('main iteration:{}'.format(it))
 
 
 def run(X, r, Pq, A0, dot=False, makeDPS=False, alphaOLD=False):
@@ -276,7 +276,7 @@ def update_data(data):
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 
-SpData = read_csv(workspace_path+'resources/csv/GEO/kvz/kvz_dps3.csv').T
+SpData = read_csv(workspace_path+'resources/csv/GEO/kvz/kvz_dps3.csv')
 #data = toDesc(SpData)
 data = SpData
 res_directory = workspace_path+'result/'

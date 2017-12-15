@@ -315,7 +315,7 @@ def dps_clust(data, beta, r, q, Pq=1, Rq=1, Aq=1, g=1, M=None, adaptR=False, ada
             upd_dataIndex = DPS_clust
             it += 1
     print('A:{}; B:{}'.format(len(dps_set[0]), len(dps_set[1])))
-    print('dpsCore iteration:{}'.format(it))
+    print('main iteration:{}'.format(it))
     finishTime = int(round(time.time() * 1000))-time_start
     #print('%i ms | %i:%f min' % (finishTime, finishTime/1000/60,  finishTime/1000 % 60))
     print('%i ms | %s' % (finishTime, time.strftime("%H:%M:%S", time.gmtime(int(finishTime/1000)))))

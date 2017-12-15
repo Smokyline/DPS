@@ -1,6 +1,6 @@
 import os
 import numpy as np
-from alghTools.tools import read_csv
+from fcaz_modules.tools import read_csv
 
 
 
@@ -12,7 +12,7 @@ class ImportData():
 
 
         try:
-            self.data_to_dps = read_csv(res_dir + '%s_DPS_%s.csv' % (zone, main_mag), col=['x', 'y']).T
+            self.data_to_dps = read_csv(res_dir + '%s_DPS_%s.csv' % (zone, main_mag))
         except Exception as e:
             print(e)
             print('dps import fail')
@@ -26,7 +26,7 @@ class ImportData():
         for mag in self.mag_str:
 
             try:
-                eq_istor = read_csv(res_dir + '%s_%sistor.csv' % (zone, mag), ['x', 'y']).T
+                eq_istor = read_csv(res_dir + '%s_%sistor.csv' % (zone, mag))
                 # eqs_istor.append(eq_istor)
                 self.eqs.append(eq_istor)
                 self.eq_labels.append('M%s%s' % (mag, 'istor'))
@@ -37,7 +37,7 @@ class ImportData():
                 pass
 
             try:
-                eq_instr = read_csv(res_dir + '%s_%sinstr.csv' % (zone, mag), ['x', 'y']).T
+                eq_instr = read_csv(res_dir + '%s_%sinstr.csv' % (zone, mag))
                 self.eqs.append(eq_instr)
                 self.eq_labels.append('M%s%s' % (mag, 'instr'))
                 print('eq M%s%s add count:%i' % (mag, 'instr', len(eq_instr)))
@@ -56,7 +56,7 @@ class ImportData():
         dps_A = np.empty((0, 2))
         for i in range(1, iter+1):
             print(i)
-            i_dps = read_csv(self.DPS_dir + 'coord_it%i.csv' % (i), col=['DPSx', 'DPSy']).T
+            i_dps = read_csv(self.DPS_dir + 'coord_it%i.csv' % (i))
             dps_A = np.append(dps_A, i_dps, axis=0)
         return dps_A
 

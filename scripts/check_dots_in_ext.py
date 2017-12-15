@@ -1,4 +1,4 @@
-from alghTools.tools import read_csv
+from fcaz_modules.tools import read_csv
 from shapely.geometry import Polygon, Point
 import numpy as np
 import os
@@ -89,8 +89,8 @@ def calc_acc_pixpoly(B, eq_data, delta):
 
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
-eq_coord = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_3,5.csv').T
-ext_coord = read_csv(workspace_path+'resources/csv/GEO/altaiSay/ext_dze.csv').T
+eq_coord = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_3,5.csv')
+ext_coord = read_csv(workspace_path+'resources/csv/GEO/altaiSay/ext_dze.csv')
 pols_coords = [[84, 47], [84, 53], [101, 53], [101, 48.5], [91.5, 48.5], [91.5, 45.5], [89, 45.5], [89, 47]]
 
 acc = calc_acc_pixpoly(ext_coord, eq_coord, 0.14)

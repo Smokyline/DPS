@@ -32,15 +32,10 @@ def get_border_coord():
 
     return coord
 
-def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None, eqs=None, labels=[''], origData_name='', poly_field=False):
-
-    #plt.clf()
-    #figManager = plt.get_current_fig_manager()
-    #figManager.window.showMaximized()
-    #ax = plt.gca()
 
 
-    fig = plt.figure(figsize=(12, 9))
+def visual_FCAZ(X, A_DPS, EXT, eqs, eqs_labels, title, path=None):
+    fig = plt.figure(figsize=(16, 12))
     ax = fig.add_subplot(111)
 
     cd = get_border_coord()
@@ -56,14 +51,15 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
     m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
 
 
-    if poly_field is not False:
-        ax.add_patch(patches.Polygon(poly_field, edgecolor='b', facecolor='none', alpha=0.9, lw=1.5, zorder=1))
+    ax.scatter(X[:, 0], X[:, 1], c='k', marker='.', s=45, linewidths=0.0, label='X')
 
-    plt.scatter(dataX[:, 0], dataX[:, 1], c='k', marker='.', s=35, linewidths=0, alpha=0.55, label=origData_name, zorder=1)
-    plt.scatter(clusterA[:, 0], clusterA[:, 1], c='g', marker='.', s=100, linewidths=0.05, label='DPS clust', zorder=2)
+    if EXT is not None:
+        ax.scatter(EXT[:, 0], EXT[:, 1], c='#fd41cd', marker='s', s=140, linewidths=0.0, label='e2xt')
+    ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=75, linewidths=0.1, label='DPS')
 
     if eqs is not None:
-        clr = ['c', 'b', 'y', 'r', '#533126', 'm']
+        #clr = ['c', 'b', 'y', 'r', '#533126', 'm']
+        clr = ['c', 'b', 'y', 'r', '#533126', '#c0c0c0']
         #clr = [next(cycol) for i in range(len(eqs))]
 
         c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
@@ -75,30 +71,107 @@ def visual_eq_DPS(clusterA, dataX, title='', display_plot=False, save_path=None,
             for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
 
                 circleA = ax.add_artist(Circle(xy=(x, y),
-                                                   radius=r, alpha=0.8, linewidth=3, zorder=4,
-                                                   edgecolor=clr[col], facecolor='none', label=labels[col]))
+                                                   radius=r, alpha=1, linewidth=4, zorder=4,
+                                                   edgecolor=clr[col], facecolor='none', label=eqs_labels[col]))
+                ax.scatter(x, y, marker='x', color='k', alpha=0.75)
 
-            plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=labels[col],
+            plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
                             zorder=4)
+
 
 
     plt.grid(True)
     plt.title(title)
-    #plt.legend(loc=8, bbox_to_anchor=(0.5, -0.19), ncol=4) #altai
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)  # baikal
-    if save_path is None:
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)
+
+
+    if path is None:
         plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
                     'result/test/' + title + '.png', dpi=400)
-    else:
-        plt.savefig(save_path + title + '.png', bbox_inches='tight', pad_inches=0, dpi=400)
 
-    if display_plot == True:
-        plt.show()
+    else:
+        plt.savefig(path+title+'.png', dpi=500)
+    plt.close()
+
+
+
+def visual_SFCAZ(X, DPS_set, EXT, eqs, eqs_labels, title, path=None):
+    fig = plt.figure(figsize=(16, 12))
+    ax = fig.add_subplot(111)
+
+    cd = get_border_coord()
+    m = Basemap(llcrnrlat=cd[2], urcrnrlat=cd[3],
+                llcrnrlon=cd[0], urcrnrlon=cd[1],
+                resolution='l')
+    m.drawcountries(zorder=1, linewidth=1)
+    m.arcgisimage(service='World_Shaded_Relief', xpixels=1500, verbose=True, zorder=0)
+
+    parallels = np.arange(-90., 90, 2)
+    m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
+    meridians = np.arange(0., 360, 2)
+    m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
+
+
+
+    ax.scatter(X[:, 0], X[:, 1], c='k', marker='x', s=25, linewidths=0.0, label='X', alpha=0.75)
+
+
+    ax.scatter(EXT[:, 0], EXT[:, 1], c='#fd41cd', marker='s', s=140, linewidths=0.0, label='e2xt')
+    for j, color in enumerate(['g', '#c5e72b', 'w']):
+        ax.scatter(DPS_set[j][:, 0], DPS_set[j][:, 1], c=color, marker='.', s=90, linewidths=0.1, label='DPS')
+
+    if eqs is not None:
+        #clr = ['c', 'b', 'y', 'r', '#533126', 'm']
+        clr = ['c', 'b', 'y', 'r', '#533126', '#c0c0c0']
+        #clr = [next(cycol) for i in range(len(eqs))]
+
+        c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
+        #np.random.shuffle(c_rad)
+        #TODO цвета
+
+        for col, eq in enumerate(eqs):
+            #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
+            for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
+
+                circleA = ax.add_artist(Circle(xy=(x, y),
+                                                   radius=r, alpha=1, linewidth=4, zorder=4,
+                                                   edgecolor=clr[col], facecolor='none', label=eqs_labels[col]))
+                ax.scatter(x, y, marker='x', color='k', alpha=0.75)
+
+            plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
+                            zorder=4)
+    """
+    import pandas as pd
+    nodes_X = np.array(
+        pd.read_csv('/home/ivan/Documents/workspace/resources/csv/GEO/kmch/kmch_nodes.csv', delimiter=';', header=0,
+                    decimal=','))
+    nodes_B = np.array(
+        pd.read_csv('/home/ivan/Documents/workspace/resources/csv/GEO/kmch/kmch_nodes_B.csv', delimiter=';', header=0,
+                    decimal=','))
+    for x, y, r in zip(nodes_B[:, 0], nodes_B[:, 1], [0.67 for i in range(len(nodes_B))]):
+            m.tissot(x, y, r, 50, alpha=0.9, linewidth=5, zorder=4, linestyle='dashed',
+                     facecolor='none', edgecolor="#800080")
+
+    ax.scatter(nodes_X[:, 0], nodes_X[:, 1], marker='o', color='y', alpha=0.75, s=150)
+    """
+
+    plt.grid(True)
+    plt.title(title)
+    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)
+
+
+    if path is None:
+        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
+                    'result/test/' + title + '.png', dpi=400)
+
+    else:
+        plt.savefig(path+title+'.png', dpi=500)
     plt.close()
 
 
 def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
-    fig = plt.figure()
+    fig = plt.figure(figsize=(16, 12))
+    ax = fig.add_subplot(111)
 
     plt.scatter(fdata[:, 0], fdata[:, 1], c='k', marker='.', s=10, linewidths=0)
     plt.scatter(clusters[:, 0], clusters[:, 1], c='r', marker='.', s=19, linewidths=0)
@@ -120,64 +193,10 @@ def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
     plt.close(fig)
 
 
-def visual_FCAZ(X, A_DPS, EXT, eqs, eqs_labels, title, path=None):
-    fig = plt.figure(figsize=(12, 9))
-    ax = fig.add_subplot(111)
-
-    cd = get_border_coord()
-    m = Basemap(llcrnrlat=cd[2], urcrnrlat=cd[3],
-                llcrnrlon=cd[0], urcrnrlon=cd[1],
-                resolution='l')
-    m.drawcountries(zorder=1, linewidth=1)
-    m.arcgisimage(service='World_Shaded_Relief', xpixels=1500, verbose=True, zorder=0)
-
-    parallels = np.arange(-90., 90, 2)
-    m.drawparallels(parallels, labels=[1, 1, 0, 0], zorder=1, linewidth=0.5, alpha=0.8)
-    meridians = np.arange(0., 360, 2)
-    m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
-
-
-    ax.scatter(X[:, 0], X[:, 1], c='k', marker='.', s=45, linewidths=0.0, label='X')
-    ax.scatter(EXT[:, 0], EXT[:, 1], c='#fd41cd', marker='s', s=110, linewidths=0.0, label='e2xt')
-    ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=75, linewidths=0.1, label='DPS')
-
-    if eqs is not None:
-        clr = ['c', 'b', 'y', 'r', '#533126', 'm']
-        #clr = [next(cycol) for i in range(len(eqs))]
-
-        c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
-        #np.random.shuffle(c_rad)
-        #TODO цвета
-
-        for col, eq in enumerate(eqs):
-            #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
-            for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
-
-                circleA = ax.add_artist(Circle(xy=(x, y),
-                                                   radius=r, alpha=0.8, linewidth=3, zorder=4,
-                                                   edgecolor=clr[col], facecolor='none', label=eqs_labels[col]))
-
-            plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
-                            zorder=4)
-
-
-
-    plt.grid(True)
-    plt.title(title)
-    plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)
-
-
-    if path is None:
-        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
-                    'result/test/' + title + '.png', dpi=400)
-
-    else:
-        plt.savefig(path+title+'.png', dpi=500)
-    plt.close()
-
 def visual_MC_dataPoly(dps, B, ext, eq, xyPoly, title, direct):
     poly = mlpPolygon(xyPoly, fc='none', ec='b', alpha=0.6, linewidth=2)
-    fig, ax = plt.subplots(figsize=(9,9))
+    fig = plt.figure(figsize=(16, 12))
+    ax = fig.add_subplot(111)
     cd = get_border_coord()
     plt.xlim(cd[0], cd[1])
     plt.ylim(cd[2], cd[3])
@@ -205,11 +224,8 @@ def visual_MC_dataPoly(dps, B, ext, eq, xyPoly, title, direct):
     plt.close()
 
 def visual_MontePlot(data_real, data_rand, title, directory):
-    plt.clf()
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
-    ax = plt.gca()
-
+    fig = plt.figure(figsize=(16, 12))
+    ax = fig.add_subplot(111)
     #plt.yticks(np.arange(0, 120, 10))
     #plt.xticks(np.arange(0, 100, 10))
 
@@ -229,10 +245,8 @@ def visual_MontePlot(data_real, data_rand, title, directory):
     plt.savefig(directory + 'MCplot.png', dpi=400)
 
 def draw_DPS_res(A, B, title, save_path=None):
-    plt.clf()
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
-    ax = plt.gca()
+    fig = plt.figure(figsize=(16, 12))
+    ax = fig.add_subplot(111)
 
     ax.scatter(A[:, 0], A[:, 1], c='g', marker='.', s=30, linewidths=0, zorder=6)
     ax.scatter(B[:, 0], B[:, 1], c='k', marker='.', s=15, linewidths=0, alpha=0.4, zorder=1)
@@ -250,11 +264,8 @@ def draw_DPS_res(A, B, title, save_path=None):
     plt.close()
 
 def check_pix_ext(A, pols, real_size=False):
-    fig = plt.figure()
-
-    figManager = plt.get_current_fig_manager()
-    figManager.window.showMaximized()
-    ax = plt.gca()
+    fig = plt.figure(figsize=(16, 12))
+    ax = fig.add_subplot(111)
 
 
     cd = get_border_coord()

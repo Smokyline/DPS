@@ -3,19 +3,17 @@ import matplotlib
 matplotlib.use('Qt5Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
-import os
-from alghTools.drawData import get_border_coord
+from fcaz_modules.drawData import get_border_coord
+import codecs
 
 
 
 
-def calcW_pix_ext(ext_data, eq_data, xy_Poly):
-    #fig = plt.figure()
-    #figManager = plt.get_current_fig_manager()
-    #figManager.window.showMaximized()
-    #ax = plt.gca()
 
-    fig, ax = plt.subplots(figsize=(9,9))
+def calcW_pix_ext(ext_data, eq_data, xy_Poly, dot_size = 200):
+
+
+    fig, ax = plt.subplots(figsize=(12, 12))
 
 
     plt.axis('off')
@@ -44,7 +42,7 @@ def calcW_pix_ext(ext_data, eq_data, xy_Poly):
 
     #ax.add_patch(patches.Polygon(pols, color='#008000', zorder=0))
 
-    test_dot = ax.scatter(center_x, center_y, marker='o', c='#ff0000', lw=0, s=350, zorder=2)
+    test_dot = ax.scatter(center_x, center_y, marker='o', c='#ff0000', lw=0, s=dot_size, zorder=2)
     one_dot_leng = calc_len_pix()
     test_dot.set_visible(False)
 
@@ -56,7 +54,7 @@ def calcW_pix_ext(ext_data, eq_data, xy_Poly):
     miss_points = 0
 
     for i, xy in enumerate(eq_data):
-        r = ax.scatter(xy[0], xy[1], marker='o', c='#ff0000', lw=0, s=350, zorder=2)
+        r = ax.scatter(xy[0], xy[1], marker='o', c='#ff0000', lw=0, s=dot_size, zorder=2)
         a_r = calc_len_pix()
 
         if np.abs(zero_r - a_r) < one_dot_leng:
@@ -72,17 +70,3 @@ def calcW_pix_ext(ext_data, eq_data, xy_Poly):
 
 
 
-def save_points_to_txt(points, path, itr):
-    save_path = path + 'random_eqs/'
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
-    for p in points:
-        f = open(save_path+'p_coord_it%i.txt' % (itr+1), 'a')
-        s = '%s %s' % (p[0], p[1])
-        f.write('%s\n' % s)
-        #f.close()
-
-def save_acc_to_txt(b, path):
-    f = open(path + 'omission.txt', 'a')
-    f.write('%s\n' % b)
-    f.close()

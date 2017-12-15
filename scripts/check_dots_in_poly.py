@@ -1,4 +1,4 @@
-from alghTools.tools import read_csv
+from fcaz_modules.tools import read_csv
 from shapely.geometry import Polygon, Point
 import numpy as np
 import os
@@ -16,7 +16,7 @@ def check_data_point_in_poly(xy, data):
     return np.array(newData)
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
-data = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_3,5.csv').T
+data = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_3,5.csv')
 
 
 

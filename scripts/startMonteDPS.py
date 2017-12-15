@@ -1,8 +1,8 @@
-from alghTools.tools import read_csv, toDesc
-from alghTools.drawData import visual_MC_dataPoly
-from dpsCore.core import dps_clust
-from Monte.create_ext_squares import input_random_dots_in_poly, create_customPoly, check_data_point_in_poly
-from Monte.core import calc_eps_disc
+from fcaz_modules.tools import read_csv, toDesc
+from fcaz_modules.drawData import visual_MC_dataPoly
+from main.dps_core import dps_clustering
+from monte_ext.create_ext_squares import input_random_dots_in_poly, create_customPoly, check_data_point_in_poly
+from monte_ext.core import calc_eps_disc
 import numpy as np
 import os
 
@@ -37,7 +37,7 @@ def run_DPSiteration(eqTrue, xyPoly, dps_param, p, iteration):
             print('%i of %i' % (i, iteration))
 
         r_dots = input_random_dots_in_poly(xyPoly, num_dots=num_dots)
-        rand_dps = dps_clust(r_dots, beta, q, r=None)
+        rand_dps = dps_clustering(r_dots, beta, q, r=None)
         Adps = rand_dps[0]
         eps_random, Ai, Bi = calc_eps_disc(r_dots[Adps], eqTrue, num_dots, p)
         A += len(Ai)
@@ -76,9 +76,9 @@ def monteCarlo(dps, eq, polyCoord, dps_param, p, num_iter, direct=None):
 
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
-data = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_DPS_Dze.csv').T
+data = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_DPS_Dze.csv')
 #eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/GEO/altaiSay/altaiSay_5,5.csv').T
-eq_dots = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_3,5.csv').T
+eq_dots = read_csv(workspace_path+'resources/csv/GEO/altaiSay/altaiSay_3,5.csv')
 #eq_dots = read_csv('/Users/Ivan/Documents/workspace/resources/csv/GEO/kvz/KAV_CRIM_EQ4,5.csv').T
 
 saveDir = workspace_path+'result/monte/altay/'

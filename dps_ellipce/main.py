@@ -2,9 +2,9 @@ import pandas as pd
 import numpy as np
 import os
 
-from ellipce_mod.generate_elli import generate_ellipses
-from ellipce_mod.core import elli_dps_clust
-from ellipce_mod.draw_map import draw_ellipce
+from dps_ellipce.generate_elli import generate_ellipses
+from dps_ellipce.core import elli_dps_clust
+from dps_ellipce.draw_map import draw_ellipce
 
 import time
 

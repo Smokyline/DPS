@@ -5,28 +5,7 @@ import sys
 from shapely.geometry import Polygon, Point
 
 
-def read_csv(path, col=['x', 'y']):
-    array = []
-    frame = pd.read_csv(path, header=0, sep=';', decimal=",")
-    for i, title in enumerate(col):
-        cell = frame[title].values
-
-        try:
-            cell = cell[~np.isnan(cell)]
-        except Exception as ex:
-            print(ex)
-            for j, c in enumerate(cell):
-                try:
-                    np.float(c.replace(',', '.'))
-                except:
-                    print('Error in row:%s "%s"' % (j, c))
-
-        array.append(cell)
-
-    return np.array(array)
-
-
-def read_csv_pandas(path):
+def read_csv(path):
     df = pd.read_csv(path, delimiter=';', header=0, decimal=',')
     return np.array(df)
 

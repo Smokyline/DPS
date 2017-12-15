@@ -1,7 +1,7 @@
 import numpy as np
 import os
-from alghTools.tools import read_csv
-from alghTools.importData import ImportData
+from fcaz_modules.tools import read_csv
+from fcaz_modules.importData import ImportData
 
 import matplotlib
 matplotlib.use('Qt5Agg')
@@ -12,8 +12,8 @@ from matplotlib.patches import Circle
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 res_path = workspace_path + 'result/baikal/baikalAltay/'
-baikal_xy_full = read_csv(res_path + 'ext_baikal.csv').T
-altay_xy_full = read_csv(res_path + 'ext_altay.csv').T
+baikal_xy_full = read_csv(res_path + 'ext_baikal.csv')
+altay_xy_full = read_csv(res_path + 'ext_altay.csv')
 
 x_min = 95
 x_max = 102
