@@ -1,7 +1,10 @@
 import os
 from fcaz_modules.tools import *
-from fcaz_modules.drawData import draw_DPS_res
-from main.dps_core import dps_clustering, calc_r
+from main.dps_core import dps_clustering
+
+import matplotlib
+matplotlib.use('Qt5Agg')
+import matplotlib.pyplot as plt
 
 
 class DPS():
@@ -44,21 +47,39 @@ class DPS():
         self.alpha, self.norm_p = self.dps_set
         self.A_coord, self.B_coord = self.sph_data[self.A_idx], self.sph_data[self.B_idx]
 
+    def draw_DPS_res(self, show_plot=False, save_path=None):
+        title = 'q:%s b:%s r:%.3f' % (self.q, self.beta, self.r)
+
+        fig = plt.figure(figsize=(15, 15))
+        ax = fig.add_subplot(111)
+
+        ax.scatter(self.A_coord[:, 0], self.A_coord[:, 1], c='g', marker='.', s=30, linewidths=0, zorder=6)
+        ax.scatter(self.B_coord[:, 0], self.B_coord[:, 1], c='k', marker='.', s=15, linewidths=0, alpha=0.4, zorder=1)
+
+        plt.grid(True)
+        plt.title(title)
+
+        if save_path is None:
+            plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/') +
+                        'result/test/' + title + '.png', dpi=400)
+
+        else:
+            plt.savefig(save_path + title, dpi=500)
+
+        if show_plot:
+            plt.show()
+        plt.close()
 
 original_umask = os.umask(0)
 
 
 data_path = 'resources/csv/GEO/baikal/baikal_DPS_2,7.csv'
+save_path = None
 
-
-dps = DPS(data_path, beta=0.0, q=-2, r=None)
+dps = DPS(data_path, beta=0.0, q=-3, r=None)
 dps.clustering()
 dps.parse_dps_set()
-
-
-title = 'q:%s b:%s r:%.3f' %(dps.q, dps.beta, dps.r)
-draw_DPS_res(dps.A_coord, dps.B_coord, title=title)
-
+dps.draw_DPS_res(show_plot=True, save_path=save_path)
 
 os.umask(original_umask)
 

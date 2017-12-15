@@ -58,16 +58,11 @@ def visual_FCAZ(X, A_DPS, EXT, eqs, eqs_labels, title, path=None):
     ax.scatter(A_DPS[:, 0], A_DPS[:, 1], c='g', marker='.', s=75, linewidths=0.1, label='DPS')
 
     if eqs is not None:
-        #clr = ['c', 'b', 'y', 'r', '#533126', 'm']
         clr = ['c', 'b', 'y', 'r', '#533126', '#c0c0c0']
-        #clr = [next(cycol) for i in range(len(eqs))]
 
         c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
-        #np.random.shuffle(c_rad)
-        #TODO цвета
 
         for col, eq in enumerate(eqs):
-            #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
             for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
 
                 circleA = ax.add_artist(Circle(xy=(x, y),
@@ -78,19 +73,10 @@ def visual_FCAZ(X, A_DPS, EXT, eqs, eqs_labels, title, path=None):
             plt.scatter([], [], c=clr[col], marker='o', s=50, linewidths=0.5, label=eqs_labels[col],
                             zorder=4)
 
-
-
     plt.grid(True)
     plt.title(title)
     plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)
-
-
-    if path is None:
-        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
-                    'result/test/' + title + '.png', dpi=400)
-
-    else:
-        plt.savefig(path+title+'.png', dpi=500)
+    plt.savefig(path+title+'.png', dpi=500)
     plt.close()
 
 
@@ -111,28 +97,19 @@ def visual_SFCAZ(X, DPS_set, EXT, eqs, eqs_labels, title, path=None):
     meridians = np.arange(0., 360, 2)
     m.drawmeridians(meridians, labels=[0, 0, 0, 1], zorder=1, linewidth=0.5, alpha=0.8)
 
-
-
     ax.scatter(X[:, 0], X[:, 1], c='k', marker='x', s=25, linewidths=0.0, label='X', alpha=0.75)
-
-
     ax.scatter(EXT[:, 0], EXT[:, 1], c='#fd41cd', marker='s', s=140, linewidths=0.0, label='e2xt')
     for j, color in enumerate(['g', '#c5e72b', 'w']):
         ax.scatter(DPS_set[j][:, 0], DPS_set[j][:, 1], c=color, marker='.', s=90, linewidths=0.1, label='DPS')
 
     if eqs is not None:
-        #clr = ['c', 'b', 'y', 'r', '#533126', 'm']
         clr = ['c', 'b', 'y', 'r', '#533126', '#c0c0c0']
-        #clr = [next(cycol) for i in range(len(eqs))]
 
         c_rad = [0.14, 0.17, 0.20, 0.24, 0.28, 0.33]
-        #np.random.shuffle(c_rad)
         #TODO цвета
 
         for col, eq in enumerate(eqs):
-            #plt.scatter(eq[:, 0], eq[:, 1], edgecolors=col_array[col], marker='*', s=50, linewidths=0.5, facecolor="none")
             for x, y, r in zip(eq[:, 0], eq[:, 1], [c_rad[col] for i in range(len(eq))]):
-
                 circleA = ax.add_artist(Circle(xy=(x, y),
                                                    radius=r, alpha=1, linewidth=4, zorder=4,
                                                    edgecolor=clr[col], facecolor='none', label=eqs_labels[col]))
@@ -158,18 +135,11 @@ def visual_SFCAZ(X, DPS_set, EXT, eqs, eqs_labels, title, path=None):
     plt.grid(True)
     plt.title(title)
     plt.legend(loc=8, bbox_to_anchor=(0.5, -0.15), ncol=4)
-
-
-    if path is None:
-        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
-                    'result/test/' + title + '.png', dpi=400)
-
-    else:
-        plt.savefig(path+title+'.png', dpi=500)
+    plt.savefig(path+title+'.png', dpi=500)
     plt.close()
 
 
-def visual_dps_iter(clusters, fdata, xdata, title, disp=False, direc=None):
+def visual_dpsB_iter(clusters, fdata, xdata, title, disp=False, direc=None):
     fig = plt.figure(figsize=(16, 12))
     ax = fig.add_subplot(111)
 
@@ -223,45 +193,6 @@ def visual_MC_dataPoly(dps, B, ext, eq, xyPoly, title, direct):
 
     plt.close()
 
-def visual_MontePlot(data_real, data_rand, title, directory):
-    fig = plt.figure(figsize=(16, 12))
-    ax = fig.add_subplot(111)
-    #plt.yticks(np.arange(0, 120, 10))
-    #plt.xticks(np.arange(0, 100, 10))
-
-    colors = ['r', 'b']
-    for c, r in enumerate(data_real):
-        ax.plot([i*100 for i in r], c=colors[c], linestyle='--', zorder=1, markersize=20)
-
-    for c, r in enumerate(data_rand):
-        ax.plot([i*100 for i in r], c=colors[c], linestyle='-', zorder=2, markersize=15)
-
-    plt.xlabel('iteration')
-    plt.ylabel('%')
-    plt.grid(True)
-    plt.legend()
-    #plt.title(title)
-
-    plt.savefig(directory + 'MCplot.png', dpi=400)
-
-def draw_DPS_res(A, B, title, save_path=None):
-    fig = plt.figure(figsize=(16, 12))
-    ax = fig.add_subplot(111)
-
-    ax.scatter(A[:, 0], A[:, 1], c='g', marker='.', s=30, linewidths=0, zorder=6)
-    ax.scatter(B[:, 0], B[:, 1], c='k', marker='.', s=15, linewidths=0, alpha=0.4, zorder=1)
-
-    plt.grid(True)
-    plt.title(title)
-
-    if save_path is None:
-        plt.savefig(os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')+
-                    'result/test/' + title + '.png', dpi=400)
-
-    else:
-        plt.savefig(save_path + title, dpi=500)
-
-    plt.close()
 
 def check_pix_ext(A, pols, real_size=False):
     fig = plt.figure(figsize=(16, 12))

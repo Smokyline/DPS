@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from scripts.DPSold import calc_a, calc_r, dps_clust, calc_p, searchAlphaIndex
 from fcaz_modules.tools import read_csv
-from fcaz_modules.drawData import visual_dps_iter
+from fcaz_modules.drawData import visual_dpsB_iter
 from itertools import product
 import os
 import sys
@@ -175,7 +175,7 @@ def m_dps(beta, a, b_dir, An, A0):
             break
         else:
             ttl = 'it:%i An:%i DPS:%i B:%i' % (it, len(X), len(DPS_clust), len(B_data))
-            visual_dps_iter(data[DPS_clust], data, data[A0], ttl, direc=dpsSaveDir+str(it))
+            visual_dpsB_iter(data[DPS_clust], data, data[A0], ttl, direc=dpsSaveDir + str(it))
             updA = DPS_clust
             it += 1
     print('A:{}; B:{}'.format(len(dps_set[0]), len(dps_set[1])))
