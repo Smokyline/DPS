@@ -3,7 +3,7 @@ import os
 import matplotlib
 
 from main.dps_core import dps_clustering
-from main.e2xt_core import ext_run
+from main.e2xt_core import E2XT
 from main.tau_runner_mp import t_runner_mp
 from fcaz_modules.tools import *
 
@@ -26,8 +26,8 @@ class SeismHist():
 
 
         # x y year month day mag
-        self.CATALOG = read_csv_pandas(res_dir + '%s_DPS_sh.csv' % region_name)
-        self.EQ = read_csv_pandas(res_dir + '%s_m7_sh.csv' % region_name)
+        self.CATALOG = read_csv(res_dir + '%s_DPS_sh.csv' % region_name)
+        self.EQ = read_csv(res_dir + '%s_m7_sh.csv' % region_name)
 
         #SFCAZ-DPS param beta, q
         self.dps_param = [[-0.3, -2],
@@ -113,8 +113,9 @@ class SeismHist():
 
 
     def calc_ext(self, A):
-        ext = ext_run(A, omega=self.omega, v=self.v, delta=self.delta)
-        return ext
+        e = E2XT(A, omega=self.omega, v=self.v, delta=self.delta)
+        ext_square = e.e2xt_out_square
+        return ext_square
 
     def visual_dps_clust(self, X, DPS, EXT, eq_above, eq_below, eq, title):
         eq_x, eq_y, eq_year, eq_month, eq_day, eq_mag = eq
@@ -179,7 +180,9 @@ class SeismHist():
 original_umask = os.umask(0)
 sh = SeismHist()
 
-sh.sh_one_eqs_auto_beta(idx_eq=5, q=[-2])
+
+sh.sh_all_eqs()
+#sh.sh_one_eqs_auto_beta(idx_eq=5, q=[-2])
 
 
 os.umask(original_umask)

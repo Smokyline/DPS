@@ -56,7 +56,9 @@ class ImportData():
         dps_A = np.empty((0, 2))
         for i in range(1, iter+1):
             print(i)
-            i_dps = read_csv(self.DPS_dir + 'coord_it%i.csv' % (i))
+            i_dps = read_csv(self.DPS_dir + 'coord_it%i.csv' % (i))[:, :2]
+            i_dps = i_dps[np.logical_not(np.isnan(i_dps))]
+            i_dps = np.reshape(i_dps, (-1, 2))
             dps_A = np.append(dps_A, i_dps, axis=0)
         return dps_A
 

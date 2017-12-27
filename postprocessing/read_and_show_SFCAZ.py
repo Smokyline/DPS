@@ -17,14 +17,14 @@ imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['7',
 eqs, eq_labels = imp.get_eq_stack()
 
 
-EXT = read_csv_pandas(workspace_path + 'result/DPS/%s/%s_%s/q=%s/'
+EXT = read_csv(workspace_path + 'result/DPS/%s/%s_%s/q=%s/'
                       % (region_name, region_name, 'I', q) + 'ext2.csv')
 
-DPS_B = read_csv_pandas(workspace_path + 'result/DPS/%s/%s_%s/q=%s/'
+DPS_B = read_csv(workspace_path + 'result/DPS/%s/%s_%s/q=%s/'
                       % (region_name, region_name, 'I', q) + 'DPS.csv')[:, 2:]
 DPS_A_set = []
 for k in ['I', 'II', 'III']:
-    dps = read_csv_pandas(workspace_path + 'result/DPS/%s/%s_%s/q=%s/'
+    dps = read_csv(workspace_path + 'result/DPS/%s/%s_%s/q=%s/'
                       % (region_name, region_name, k, q)+'DPS.csv')[:, :2]
     DPS_A_set.append(dps)
 

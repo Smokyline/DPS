@@ -7,6 +7,7 @@ from shapely.geometry import Polygon, Point
 
 def read_csv(path):
     df = pd.read_csv(path, delimiter=';', header=0, decimal=',')
+
     return np.array(df)
 
 
@@ -16,6 +17,13 @@ def save_DPS_coord(A, B, path, title):
     df = pd.concat([Adf, Bdf], axis=1)
     df.to_csv(path + title + '.csv', index=False, header=True,
               sep=';', decimal=',')
+
+def save_p(Px, path, title):
+    Bdf = pd.DataFrame(Px, columns=['x', 'y', 'p'])
+    Bdf.to_csv(path + title + '.csv', index=False, header=True,
+              sep=';', decimal=',')
+
+
 
 def remove_zero_depth(data, dataDep):
     sph_data = data.copy()

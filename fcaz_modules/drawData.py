@@ -194,7 +194,7 @@ def visual_MC_dataPoly(dps, B, ext, eq, xyPoly, title, direct):
     plt.close()
 
 
-def check_pix_ext(A, pols, real_size=False):
+def check_pix_ext(A, real_size=False):
     fig = plt.figure(figsize=(16, 12))
     ax = fig.add_subplot(111)
 
@@ -203,7 +203,9 @@ def check_pix_ext(A, pols, real_size=False):
     plt.xlim(cd[0], cd[1])
     plt.ylim(cd[2], cd[3])
 
-    ax.add_patch(patches.Polygon(pols, color='#008000'))
+    poly = [[cd[0], cd[2]], [cd[0], cd[3]], [cd[1], cd[3]], [cd[1], cd[2]]]
+
+    ax.add_patch(patches.Polygon(poly, color='#008000'))
 
     if real_size:
         delta = (np.sqrt(2) * 0.05 / 2)

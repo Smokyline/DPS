@@ -55,6 +55,8 @@ def runDPSm_qIteration(desc_data, sph_data, save_path, epochs, Q, sample_eq):
             save_DPS_coord(twoDcoord[idx_Aclust], twoDcoord[idxX], path=q_dir, title='coord_q=%s_final' % q)
             break
 
+
+
 original_umask = os.umask(0)
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
 region_name = 'kmch'
@@ -62,31 +64,34 @@ mc_mag = '3.5'
 epochs = 5
 # COORD MAP!!!
 
+Q = [-2.75]
+load_q = '-2.75'
+#Q = np.arange(-1.7, -3.1, -0.1)
+
+
+load_k_iter = 'I'
+save_k_iter = 'II'
+
+
 imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['7', '7,5', '8'])
 eqs, eq_labels = imp.get_eq_stack()
-
 
 # DPS set
 #desc_data = imp.data_to_dps
 
-target_iter = 3
-desc_data = imp.read_dps_res(zone=region_name,mod='%s_%s' % (region_name, 'I'), q='[-2.0; -3.0]', iter=target_iter)
-#desc_data = imp.read_dps_res(zone=region_name,mod='%s_%s' % (region_name, 'II'), q='[-1.7; -3.0]', iter=target_iter)
+target_iter = 2
+desc_data = imp.read_dps_res(zone=region_name,mod='%s_%s' % (region_name, load_k_iter), q=load_q, iter=target_iter)
+
+
+
+
 
 print(len(desc_data), 'data size')
-
 sph_data = desc_data.copy()
 desc_data = toDesc(desc_data)
 
-
-#Q = [-2.75]
-Q = np.arange(-1.7, -3.1, -0.1)
-
-
-# save
-k_iter = 'III'
-beta_array = np.arange(-1, 1.05, 0.05).round(2)
-save_path = workspace_path+'result/DPS/%s/%s_%s/' % (region_name, region_name, k_iter)
+beta_array = np.arange(-1, 1.05, 0.1).round(2)
+save_path = workspace_path+'result/DPS/%s/%s_%s/' % (region_name, region_name, save_k_iter)
 
 
 time_start = int(round(time.time() * 1000))

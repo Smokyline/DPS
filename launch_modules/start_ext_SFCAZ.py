@@ -4,15 +4,16 @@ from fcaz_modules.drawData import get_border_coord, check_pix_ext, visual_FCAZ
 import os
 import pandas as pd
 
-omega=-4,
-v=-2.25,
-delta=0.05,
-region_name='kmch',
-mc_mag='3.5',
-mag_array=['7', '7,5', '8'],
-q='[-2.0; -3.0]',
-read_k='III',
-target_it=5
+omega=-4
+v=-2.25
+delta=0.05
+region_name='kmch'
+mc_mag='3.5'
+mag_array=['7', '7,5', '8']
+#q='[-2.0; -3.0]'
+q='-3'
+read_k='I'
+target_it=2
 
 # import data
 imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','),
@@ -27,7 +28,7 @@ eqs, eqs_labels = imp.get_eq_stack()
 # calc e2xt
 e = E2XT(DPS_A, omega, v, delta)
 ext_square = e.e2xt_out_square
-ext_pers = check_pix_ext(ext_square, get_border_coord())
+ext_pers = check_pix_ext(ext_square)
 
 # visual e2xt
 original_umask = os.umask(0)
