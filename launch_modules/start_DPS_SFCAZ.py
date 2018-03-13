@@ -70,6 +70,8 @@ load_q = '-2.75'
 
 
 load_k_iter = 'I'
+target_iter = 2
+
 save_k_iter = 'II'
 
 
@@ -77,10 +79,8 @@ imp = ImportData(region_name, main_mag=mc_mag.replace('.', ','), mag_array=['7',
 eqs, eq_labels = imp.get_eq_stack()
 
 # DPS set
-#desc_data = imp.data_to_dps
-
-target_iter = 2
-desc_data = imp.read_dps_res(zone=region_name,mod='%s_%s' % (region_name, load_k_iter), q=load_q, iter=target_iter)
+desc_data = imp.data_to_dps
+#desc_data = imp.read_dps_res(zone=region_name, mod='%s_%s' % (region_name, load_k_iter), q=load_q, iter=target_iter)
 
 
 

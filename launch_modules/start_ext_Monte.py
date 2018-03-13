@@ -15,11 +15,12 @@ def get_pols_coord():
 
 
 region_name = 'kmch'
-k_iter = 'III'
+k_iter = 'I'
 mc_mag = '3.5'
 mag_array = ['7', '7,5', '8']
 q='[-2.0; -3.0]'
 num_it = 500
+
 dot_size = 350
 
 workspace_path = os.path.expanduser('~' + os.getenv("USER") + '/Documents/workspace/')
