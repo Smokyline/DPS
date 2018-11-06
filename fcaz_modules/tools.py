@@ -2,7 +2,7 @@ import numpy as np
 import pandas as pd
 import math
 import sys
-from shapely.geometry import Polygon, Point
+#from shapely.geometry import Polygon, Point
 
 
 def read_csv(path):

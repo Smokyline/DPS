@@ -2,13 +2,51 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3001ad04-8bcc-46c4-adc0-610d82173d30" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/scripts/extreame_value.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FCAZ.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FCAZ.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dps_ellipce/.ipynb_checkpoints/sandbox-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dps_ellipce/.ipynb_checkpoints/sandbox-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dps_ellipce/dps_elli_core.py" beforeDir="false" afterPath="$PROJECT_DIR$/dps_ellipce/dps_elli_core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dps_ellipce/sandbox.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dps_ellipce/sandbox.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fcaz_modules/drawData.py" beforeDir="false" afterPath="$PROJECT_DIR$/fcaz_modules/drawData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fcaz_modules/importData.py" beforeDir="false" afterPath="$PROJECT_DIR$/fcaz_modules/importData.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fcaz_modules/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/fcaz_modules/tools.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py" beforeDir="false" afterPath="$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch_modules/start_DPS_ellipse.py" beforeDir="false" afterPath="$PROJECT_DIR$/launch_modules/start_DPS_ellipse.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch_modules/start_ext_Monte.py" beforeDir="false" afterPath="$PROJECT_DIR$/launch_modules/start_ext_Monte.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch_modules/start_ext_SFCAZ.py" beforeDir="false" afterPath="$PROJECT_DIR$/launch_modules/start_ext_SFCAZ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/launch_modules/vanilla_DPS.py" beforeDir="false" afterPath="$PROJECT_DIR$/launch_modules/vanilla_DPS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/dps_core.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/dps_core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/e2xt_core.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/e2xt_core.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/tau_runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/tau_runner.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/tau_runner_mp.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/tau_runner_mp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monte_ext/calc_ext_w.py" beforeDir="false" afterPath="$PROJECT_DIR$/monte_ext/calc_ext_w.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monte_ext/monte_carlo.py" beforeDir="false" afterPath="$PROJECT_DIR$/monte_ext/monte_carlo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postprocessing/read_and_show_FCAZ.py" beforeDir="false" afterPath="$PROJECT_DIR$/postprocessing/read_and_show_FCAZ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postprocessing/read_and_show_SFCAZ.py" beforeDir="false" afterPath="$PROJECT_DIR$/postprocessing/read_and_show_SFCAZ.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postprocessing/seism_history.py" beforeDir="false" afterPath="$PROJECT_DIR$/postprocessing/seism_history.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/postprocessing/union_SFCAZ_it.py" beforeDir="false" afterPath="$PROJECT_DIR$/postprocessing/union_SFCAZ_it.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.ipynb_checkpoints/sandbox-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/.ipynb_checkpoints/sandbox-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/.ipynb_checkpoints/time_shift_FCAZ-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/.ipynb_checkpoints/time_shift_FCAZ-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DPSb.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DPSb.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/DPSold.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/DPSold.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/baikal_altay.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/baikal_altay.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/check_dots_in_ext.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/check_dots_in_ext.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/check_dots_in_poly.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/check_dots_in_poly.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/draw_elli_result.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/draw_elli_result.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/ellipse_check_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/ellipse_check_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/extreame_value.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/extreame_value.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/sandbox.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/sandbox.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/startMonteDPS.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/startMonteDPS.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/time_shift_FCAZ.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/time_shift_FCAZ.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scripts/time_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/scripts/time_test.py" afterDir="false" />
     </list>
     <ignored path="DPSM.iws" />
     <ignored path=".idea/workspace.xml" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,33 +55,58 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="1395897256">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="5" />
+          <entry key="project.open.time.0" value="5" />
+          <entry key="project.open.time.20" value="1" />
+          <entry key="project.opened" value="6" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="Python" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="2" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FavoritesManager">
     <favorites_list name="DPSM" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="start_DPS_SFCAZ.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/tau_runner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+            <state relative-caret-position="504">
+              <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tau_runner_mp.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main/tau_runner_mp.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tools.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fcaz_modules/tools.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
+            <state relative-caret-position="3114">
+              <caret line="176" column="20" selection-start-line="176" selection-start-column="20" selection-end-line="176" selection-end-column="20" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -51,10 +114,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="importData.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fcaz_modules/importData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
+            <state relative-caret-position="216">
               <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
@@ -63,16 +126,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="read_and_show_SFCAZ.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postprocessing/read_and_show_SFCAZ.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="11" column="17" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="17" />
+            <state>
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="read_and_show_FCAZ.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/postprocessing/read_and_show_FCAZ.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="378">
@@ -81,11 +146,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="drawData.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/fcaz_modules/drawData.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="666">
-              <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="38" selection-end-column="29" />
+            <state relative-caret-position="1260">
+              <caret line="70" column="67" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="67" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -93,7 +158,25 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sandbox.ipynb" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/scripts/DPSb.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="822">
+              <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/dps_core.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/sandbox.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
@@ -102,7 +185,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="time_shift_FCAZ.ipynb" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/scripts/time_shift_FCAZ.ipynb">
           <provider selected="true" editor-type-id="ipnb-editor">
             <state>
@@ -175,7 +258,6 @@
         <option value="$PROJECT_DIR$/postprocessing/read_and_show_SFCAZ.py" />
         <option value="$PROJECT_DIR$/postprocessing/union_csv_it.py" />
         <option value="$PROJECT_DIR$/postprocessing/read_and_show_FCAZ.py" />
-        <option value="$PROJECT_DIR$/fcaz_modules/drawData.py" />
         <option value="$PROJECT_DIR$/postprocessing/union_SFCAZ_it.py" />
         <option value="$PROJECT_DIR$/launch_modules/start_ext_SFCAZ.py" />
         <option value="$PROJECT_DIR$/fcaz_modules/importData.py" />
@@ -184,20 +266,22 @@
         <option value="$PROJECT_DIR$/dps_ellipce/sandbox.ipynb" />
         <option value="$PROJECT_DIR$/dps_ellipce/start_DPS_ellipse.py" />
         <option value="$PROJECT_DIR$/dps_ellipce/dps_elli_core.py" />
-        <option value="$PROJECT_DIR$/fcaz_modules/tools.py" />
         <option value="$PROJECT_DIR$/launch_modules/start_DPS_ellipse.py" />
         <option value="$PROJECT_DIR$/launch_modules/start_ext_Monte.py" />
         <option value="$PROJECT_DIR$/scripts/time_shift_FCAZ.ipynb" />
         <option value="$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py" />
         <option value="$PROJECT_DIR$/postprocessing/seism_history.py" />
         <option value="$PROJECT_DIR$/scripts/extreame_value.ipynb" />
+        <option value="$PROJECT_DIR$/fcaz_modules/drawData.py" />
+        <option value="$PROJECT_DIR$/fcaz_modules/tools.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="y" value="51" />
-    <option name="width" value="1280" />
-    <option name="height" value="900" />
+    <option name="x" value="187" />
+    <option name="y" value="115" />
+    <option name="width" value="1134" />
+    <option name="height" value="814" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -223,6 +307,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -264,7 +349,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -303,156 +387,6 @@
     </option>
   </component>
   <component name="RunManager" selected="Jupyter Notebook.FCAZ">
-    <configuration name="FCAZ" type="JupiterNotebook" factoryName="Jupyter Notebook">
-      <module name="FCAZ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="additionalOptions" value="" />
-      <option name="ipnbHost" value="127.0.0.1" />
-      <option name="ipnbPort" value="8888" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="DPSM" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="start_DPS_SFCAZ" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FCAZ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/launch_modules" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="start_DPS_ellipse" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FCAZ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dps_ellipce" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_DPS_ellipse.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="start_ext_Monte" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FCAZ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/launch_modules" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_ext_Monte.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="start_ext_SFCAZ" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FCAZ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/launch_modules" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_ext_SFCAZ.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="union_SFCAZ_it" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="FCAZ" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/postprocessing" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/postprocessing/union_SFCAZ_it.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-    </configuration>
-    <configuration name="FCAZ" type="Python.Ipnb" factoryName="Jupyter Notebook">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="FCAZ" />
-      <option name="additionalOptions" value="--allow-root" />
-      <option name="ipnbHost" value="127.0.0.1" />
-      <option name="ipnbPort" value="8888" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="DPSM" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-    </configuration>
     <configuration default="true" type="Python.Ipnb" factoryName="Jupyter Notebook">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -499,8 +433,9 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <module name="DPSM" />
@@ -512,8 +447,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
       <module name="DPSM" />
@@ -526,8 +462,179 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;.&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FCAZ" type="JupiterNotebook" factoryName="Jupyter Notebook">
+      <module name="FCAZ" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="additionalOptions" value="" />
+      <option name="ipnbHost" value="127.0.0.1" />
+      <option name="ipnbPort" value="8888" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="DPSM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="start_DPS_SFCAZ" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FCAZ" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/launch_modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="start_DPS_ellipse" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FCAZ" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/dps_ellipce" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_DPS_ellipse.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="start_ext_Monte" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FCAZ" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/launch_modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_ext_Monte.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="start_ext_SFCAZ" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FCAZ" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/launch_modules" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/launch_modules/start_ext_SFCAZ.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="union_SFCAZ_it" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="FCAZ" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/postprocessing" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/postprocessing/union_SFCAZ_it.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="FCAZ" type="Python.Ipnb" factoryName="Jupyter Notebook">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="$USER_HOME$/anaconda3/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="FCAZ" />
+      <option name="additionalOptions" value="--allow-root" />
+      <option name="ipnbHost" value="127.0.0.1" />
+      <option name="ipnbPort" value="8888" />
+    </configuration>
+    <configuration default="true" type="Tox" factoryName="Tox">
+      <module name="DPSM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Doctests">
       <module name="DPSM" />
@@ -545,6 +652,7 @@
       <option name="TEST_TYPE" value="TEST_SCRIPT" />
       <option name="PATTERN" value="" />
       <option name="USE_PATTERN" value="false" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Nosetests">
       <module name="DPSM" />
@@ -557,8 +665,9 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="Unittests">
       <module name="DPSM" />
@@ -570,8 +679,9 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
       <module name="DPSM" />
@@ -584,16 +694,17 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_keywords" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;.&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Jupyter Notebook.FCAZ" />
       <item itemvalue="Python.start_DPS_SFCAZ" />
       <item itemvalue="Python.start_ext_SFCAZ" />
       <item itemvalue="Python.union_SFCAZ_it" />
       <item itemvalue="Python.start_DPS_ellipse" />
       <item itemvalue="Python.start_ext_Monte" />
-      <item itemvalue="Jupyter Notebook.FCAZ" />
     </list>
     <recent_temporary>
       <list>
@@ -644,7 +755,14 @@
       <option name="project" value="LOCAL" />
       <updated>1514382619074</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="elli">
+      <created>1527253276036</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1527253276037</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -672,43 +790,43 @@
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16321656" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49722" weight="0.32649842" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5056818" side_tool="true" weight="0.48979592" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4862013" visible="true" weight="0.23890784" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.19873817" />
-      <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.4943182" weight="0.24971624" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32876712" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.3968254" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.19863792" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4862013" weight="0.23890784" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3968254" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49722" weight="0.32649842" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32876712" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5056818" side_tool="true" weight="0.48979592" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.19873817" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.4943182" weight="0.24971624" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Data View" order="3" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.19863792" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14204545" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" id="Data View" order="3" />
       <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3956916" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48949918" weight="0.21088435" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.39747635" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49722" weight="0.32649842" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5105008" side_tool="true" weight="0.21135646" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.19873817" />
+      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49722" weight="0.24317618" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32876712" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.49722" weight="0.32649842" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.19873817" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.48949918" weight="0.21088435" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.39747635" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32876712" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.5105008" side_tool="true" weight="0.21135646" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.3956916" />
-      <window_info anchor="bottom" id="Python Console" order="9" sideWeight="0.49722" weight="0.24317618" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Data View" order="3" />
     </layout-to-restore>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -748,11 +866,6 @@
     <MESSAGE value="edit draw data" />
     <MESSAGE value="elli" />
     <option name="LAST_COMMIT_MESSAGE" value="elli" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <option name="time" value="15" />
-    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/anaconda/lib/python3.5/site-packages/pandas/io/common.py" />
@@ -823,13 +936,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/tau_runner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-73">
-          <caret line="59" column="19" selection-start-line="59" selection-start-column="19" selection-end-line="59" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Monte/core.py" />
     <entry file="file://$PROJECT_DIR$/Monte/create_ext_squares.py" />
     <entry file="file://$PROJECT_DIR$/monte_ext/monte_carlo.py">
@@ -843,13 +949,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="900">
           <caret line="51" column="4" selection-start-line="51" selection-start-column="4" selection-end-line="51" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/DPSb.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3186">
-          <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -906,20 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postprocessing/read_and_show_SFCAZ.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="11" column="17" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/postprocessing/read_and_show_FCAZ.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/time_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -927,9 +1012,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/postprocessing/seism_history.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/extreame_value.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/tau_runner_mp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="24" column="18" selection-start-line="24" selection-start-column="18" selection-end-line="24" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/tau_runner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/fcaz_modules/tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
+        <state relative-caret-position="3114">
+          <caret line="176" column="20" selection-start-line="176" selection-start-column="20" selection-end-line="176" selection-end-column="20" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -938,7 +1062,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/fcaz_modules/importData.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
+        <state relative-caret-position="216">
           <caret line="14" column="37" selection-start-line="14" selection-start-column="37" selection-end-line="14" selection-end-column="37" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
@@ -946,20 +1070,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/fcaz_modules/drawData.py">
+    <entry file="file://$PROJECT_DIR$/postprocessing/read_and_show_SFCAZ.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="666">
-          <caret line="37" column="4" selection-start-line="37" selection-start-column="4" selection-end-line="38" selection-end-column="29" />
+        <state>
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/postprocessing/seism_history.py">
+    <entry file="file://$PROJECT_DIR$/postprocessing/read_and_show_FCAZ.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        <state relative-caret-position="378">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -977,34 +1100,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/fcaz_modules/drawData.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1260">
+          <caret line="70" column="67" selection-start-line="70" selection-start-column="16" selection-end-line="70" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/DPSb.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="822">
+          <caret line="177" column="12" selection-start-line="177" selection-start-column="12" selection-end-line="177" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main/dps_core.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret lean-forward="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/launch_modules/start_DPS_SFCAZ.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/extreame_value.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/test.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/tau_runner_mp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="33" lean-forward="true" selection-start-line="33" selection-end-line="33" />
+        <state relative-caret-position="288">
+          <caret line="37" column="32" selection-start-line="37" selection-start-column="32" selection-end-line="37" selection-end-column="32" />
         </state>
       </provider>
     </entry>

@@ -4,5 +4,5 @@
     <option name="arguments" value="--allow-root" />
     <option name="workingDirectory" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (FCAZ)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6 (py36)" project-jdk-type="Python SDK" />
 </project>
